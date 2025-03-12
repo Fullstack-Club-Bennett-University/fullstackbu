@@ -32,7 +32,7 @@ function Navbar() {
       <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
         <button onClick={() => scrollToSection('about')}>About</button>
         <button onClick={() => scrollToSection('team')}>Team</button>
-        <button onClick={() => scrollToSection('events')}>Upcoming Events</button>
+        <button onClick={() => scrollToSection('UpcomingEventsSection')}>Upcoming Events</button>
         <button onClick={() => scrollToSection('contact')}>Contact</button>
       </div>
     </nav>

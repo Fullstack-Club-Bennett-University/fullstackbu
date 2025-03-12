@@ -5,17 +5,7 @@ const MeetTheTeamSection = () => {
   const [activeMember, setActiveMember] = useState(0);
   const deptScrollRef = useRef(null);
 
-  // Scroll active department into view
-  useEffect(() => {
-    if (deptScrollRef.current) {
-      const activeButton = deptScrollRef.current.children[activeDepartment];
-      if (activeButton) {
-        activeButton.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-      }
-    }
-  }, [activeDepartment]);
-
-  // Team member data
+  // Team data (keeping your original data structure)
   const departments = [
     { id: 0, name: 'Leadership', icon: '👑' },
     { id: 1, name: 'Photography', icon: '📷' },
@@ -27,7 +17,8 @@ const MeetTheTeamSection = () => {
     { id: 7, name: 'AI', icon: '🧠' },
     { id: 8, name: 'Planning', icon: '📋' }
   ];
-  
+
+ 
   const teamMembers = [
     // Leadership Team
     {
@@ -118,219 +109,177 @@ const MeetTheTeamSection = () => {
     }
   ];
   
-  // Enhanced navigation that preserves position when switching departments
+  useEffect(() => {
+    if (deptScrollRef.current) {
+      const activeButton = deptScrollRef.current.children[activeDepartment];
+      activeButton?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [activeDepartment]);
+
   const handleDepartmentChange = (deptId) => {
     const newDeptMembers = teamMembers.filter(member => member.departmentId === deptId);
     const currentDeptMembers = teamMembers.filter(member => member.departmentId === activeDepartment);
-    
-    // Calculate relative position in new department
     const relativePosition = activeMember / currentDeptMembers.length;
     const newPosition = Math.floor(relativePosition * newDeptMembers.length);
     
     setActiveDepartment(deptId);
-    setActiveMember(newPosition);
+    setActiveMember(Math.min(newPosition, newDeptMembers.length - 1));
   };
 
   const navigateTeam = (direction) => {
     if (filteredMembers.length <= 1) return;
-    
-    if (direction === 'next') {
-      setActiveMember((activeMember + 1) % filteredMembers.length);
-    } else {
-      setActiveMember((activeMember - 1 + filteredMembers.length) % filteredMembers.length);
-    }
+    setActiveMember(prev => direction === 'next' 
+      ? (prev + 1) % filteredMembers.length 
+      : (prev - 1 + filteredMembers.length) % filteredMembers.length
+    );
   };
 
-  // Filter team members by active department
-  const filteredMembers = teamMembers.filter(
-    member => member.departmentId === activeDepartment
-  );
-  
-  const currentMember = filteredMembers.length > 0 
-    ? filteredMembers[activeMember % filteredMembers.length] 
-    : teamMembers[0];
+  const filteredMembers = teamMembers.filter(member => member.departmentId === activeDepartment);
+  const currentMember = filteredMembers[activeMember] || teamMembers[0];
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-white via-blue-50 to-blue-400 p-4 md:p-6">
-      <h1 className="text-6xl md:text-7xl font-bold text-orange-500 mb-12 tracking-widest text-center" 
-          style={{textShadow: '2px 2px 0 rgba(0,0,0,0.1)'}}>
-        MEET THE TEAM
-      </h1>
-      
-      <div className="container mx-auto max-w-7xl">
-        <div className="w-full bg-black rounded-[2.5rem] p-6 md:p-8 shadow-xl">
-          <div className="flex flex-col md:flex-row gap-6 md:gap-8 min-h-[800px]">
-            {/* Left sidebar - departments */}
-            <div className="w-full md:w-48  bg-blue-600 rounded-[1.5rem] overflow-hidden shadow-2xl">
-              {/* Mobile scroll indicator */}
-              <div className="md:hidden w-full h-1 bg-white bg-opacity-20">
-                <div 
-                  className="h-full bg-white transition-all duration-300"
-                  style={{ 
-                    width: `${100 / departments.length}%`,
-                    marginLeft: `${(100 / departments.length) * activeDepartment}%`
-                  }}
-                />
-              </div>
-              
-              {/* Departments container */}
-              <div 
-                ref={deptScrollRef}
-                className="h-full flex flex-row md:flex-col justify-between py-8 px-6 overflow-x-auto md:overflow-x-hidden snap-x snap-mandatory md:snap-none"
+    <section className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-100 to-blue-300 py-8 px-4 flex items-center justify-center">
+      <div className="w-full max-w-7xl mx-auto">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-orange-500 mb-6 text-center tracking-wide">
+          Meet Our Team
+        </h1>
+
+        <div className="bg-black/90 backdrop-blur-sm rounded-3xl shadow-2xl p-4 sm:p-6">
+          {/* Mobile Department Scroll */}
+          <div 
+            ref={deptScrollRef}
+            className="mb-6 flex overflow-x-auto snap-x snap-mandatory scrollbar-hidden pb-2
+              lg:hidden touch-pan-x"
+          >
+            {departments.map(dept => (
+              <button
+                key={dept.id}
+                onClick={() => handleDepartmentChange(dept.id)}
+                className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 mx-1 rounded-xl transition-all snap-center
+                  ${activeDepartment === dept.id 
+                    ? 'bg-blue-600 text-white shadow-md' 
+                    : 'bg-blue-100 text-blue-600 hover:bg-blue-200'}`}
               >
+                <span className="text-xl">{dept.icon}</span>
+                <span className="text-sm font-medium whitespace-nowrap">{dept.name}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Main Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] gap-4 lg:gap-6">
+            {/* Desktop Department Sidebar */}
+            <div className="hidden lg:block lg:w-64 shrink-0">
+              <div className="flex flex-col gap-2 p-4 bg-blue-600 rounded-2xl h-full overflow-y-auto scrollbar-thin scrollbar-thumb-blue-400">
                 {departments.map(dept => (
-                  <button 
+                  <button
                     key={dept.id}
                     onClick={() => handleDepartmentChange(dept.id)}
-                    className={`flex flex-col items-center justify-center transition-all duration-300 snap-center
-                      min-w-[90px] md:min-w-0 w-24 h-24 md:w-full md:h-24
-                      rounded-2xl group relative
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all w-full
                       ${activeDepartment === dept.id 
-                        ? 'bg-white scale-105 shadow-lg' 
-                        : 'hover:bg-blue-700/50'}`}
+                        ? 'bg-white text-blue-600 shadow-md' 
+                        : 'text-white hover:bg-blue-700'}`}
                   >
-                    <span className={`text-5xl transition-transform duration-300 group-hover:scale-110
-                      ${activeDepartment === dept.id ? 'text-blue-600' : 'text-white'}`}>
-                      {dept.icon}
-                    </span>
-                    <span className={`mt-2 text-sm font-medium transition-colors
-                      ${activeDepartment === dept.id ? 'text-blue-600' : 'text-white/80'}`}>
-                      {dept.name}
-                    </span>
-                    {/* Active indicator */}
-                    {activeDepartment === dept.id && (
-                      <div className="absolute inset-0 rounded-2xl ring-4 ring-white ring-opacity-50 animate-pulse" />
-                    )}
+                    <span className="text-2xl">{dept.icon}</span>
+                    <span className="text-sm font-medium">{dept.name}</span>
                   </button>
                 ))}
               </div>
             </div>
-          
-            {/* Center - team member info */}
-            <div className="flex-1 relative">
-              {/* Navigation Arrows */}
-              {filteredMembers.length > 1 && (
-                <>
-                  <button 
-                    onClick={() => navigateTeam('prev')}
-                    className="absolute left-0 top-1/2 -translate-x-8 -translate-y-1/2 w-20 h-20 
-                      bg-white/90 backdrop-blur-sm rounded-full 
-                      flex items-center justify-center 
-                      hover:bg-blue-100 transition-all duration-300
-                      shadow-lg hover:shadow-xl z-10
-                      transform hover:-translate-x-9"
-                  >
-                    <span className="text-blue-600 text-4xl">◀</span>
-                  </button>
-                  <button 
-                    onClick={() => navigateTeam('next')}
-                    className="absolute right-0 top-1/2 translate-x-8 -translate-y-1/2 w-20 h-20 
-                      bg-white/90 backdrop-blur-sm rounded-full 
-                      flex items-center justify-center 
-                      hover:bg-blue-100 transition-all duration-300
-                      shadow-lg hover:shadow-xl z-10
-                      transform hover:translate-x-9"
-                  >
-                    <span className="text-blue-600 text-4xl">▶</span>
-                  </button>
-                </>
-              )}
 
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-[1.5rem] overflow-hidden h-full">
-                <div className="h-full flex flex-col md:flex-row gap-6">
-                  {/* Member image */}
-                  <div className="w-full md:w-1/2 p-4 md:p-6">
-                    <div className="relative rounded-[1.5rem] overflow-hidden border-4 border-white h-80 md:h-[600px]">
-                      <div className="absolute inset-0 bg-gradient-to-br from-transparent to-blue-900 opacity-20"></div>
-                      <img 
-                        src={currentMember.image} 
-                        alt={currentMember.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
+            {/* Team Member Card */}
+            <div className="relative bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl overflow-hidden">
+              <div className="flex flex-col sm:grid sm:grid-cols-2 h-full">
+                {/* Image */}
+                <div className="p-4 sm:p-6">
+                  <img
+                    src={currentMember?.image}
+                    alt={currentMember?.name}
+                    className="w-full h-64 sm:h-80 md:h-full object-cover rounded-xl border-4 border-white shadow-lg"
+                    loading="lazy"
+                  />
+                </div>
+
+                {/* Info */}
+                <div className="p-4 sm:p-6 text-white flex flex-col justify-between">
+                  <div>
+                    <h2 className="text-2xl sm:text-3xl font-bold mb-2">{currentMember?.name}</h2>
+                    <span className="inline-block bg-white text-blue-600 px-3 py-1 rounded-full text-sm font-semibold mb-4">
+                      {currentMember?.role}
+                    </span>
+                    <p className="text-base sm:text-lg mb-4">{currentMember?.bio}</p>
+                    <ul className="space-y-2 text-sm sm:text-base">
+                      {currentMember?.additionalInfo?.map((info, index) => (
+                        <li key={index} className="flex items-center gap-2">
+                          <span className="text-blue-200">•</span>
+                          <span>{info}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  
-                  {/* Member info with funky styling */}
-                  <div className="w-full md:w-1/2 p-4 md:p-6 text-white">
-                    <h2 className="text-4xl font-bold mb-4 text-white">{currentMember.name}</h2>
-                    <div className="bg-white text-blue-600 font-bold text-2xl px-8 py-2 inline-block rounded-full mb-6 transform -skew-x-6 shadow-lg">
-                      {currentMember.role}
-                    </div>
-                    
-                    <div className="text-xl space-y-8">
-                      <p className="font-mono leading-relaxed">{currentMember.bio}</p>
-                      
-                      <ul className="space-y-4">
-                        {currentMember.additionalInfo.map((info, index) => (
-                          <li key={index} className="font-mono leading-relaxed flex items-center">
-                            <span className="text-white mr-3 text-2xl">▸</span>
-                            {info}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    
-                    {/* Navigation dots */}
-                    {filteredMembers.length > 1 && (
-                      <div className="flex justify-center mt-12 space-x-4">
+
+                  {/* Mobile Navigation */}
+                  {filteredMembers.length > 1 && (
+                    <div className="flex items-center justify-between mt-4 sm:mt-6">
+                      <button 
+                        onClick={() => navigateTeam('prev')} 
+                        className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full hover:bg-white/30"
+                        aria-label="Previous team member"
+                      >
+                        ←
+                      </button>
+                      <div className="flex gap-1 sm:gap-2">
                         {filteredMembers.map((_, index) => (
-                          <button 
+                          <button
                             key={index}
                             onClick={() => setActiveMember(index)}
-                            className={`w-8 h-8 transform rotate-45 transition-all duration-300 ${
-                              index === activeMember % filteredMembers.length 
-                                ? 'bg-white scale-110 shadow-lg' 
-                                : 'bg-blue-200 hover:bg-blue-100'
-                            }`}
+                            className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full transition-all
+                              ${index === activeMember ? 'bg-white scale-125' : 'bg-blue-300'}`}
+                            aria-label={`Go to team member ${index + 1}`}
                           />
                         ))}
                       </div>
-                    )}
-                  </div>
+                      <button 
+                        onClick={() => navigateTeam('next')} 
+                        className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full hover:bg-white/30"
+                        aria-label="Next team member"
+                      >
+                        →
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            
-            {/* Right sidebar with funky styling */}
-            <div className="w-full md:w-40 flex flex-col gap-6">
-              {/* CODE CREATE CONQUER logo */}
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-[1.5rem] overflow-hidden flex-1">
-                <div className="h-full p-4 flex flex-col items-center justify-center text-white font-bold">
-                  <div className="text-4xl leading-tight tracking-tight text-center">
-                    <div className="mb-3">CODE</div>
-                    <div className="mb-3">CRE</div>
-                    <div className="mb-3">ATE</div>
-                    <div className="text-white transform -rotate-12 origin-center text-7xl mt-3 font-black">CONQUER</div>
-                  </div>
+
+            {/* Desktop Right Sidebar */}
+            <div className="hidden lg:block lg:w-48 shrink-0">
+              <div className="h-full flex flex-col gap-4">
+                <div className="bg-blue-600 rounded-2xl p-4 text-white text-center flex-1 flex flex-col justify-center">
+                  <span className="text-xl sm:text-2xl font-bold block">Code</span>
+                  <span className="text-xl sm:text-2xl font-bold block">Create</span>
+                  <span className="text-2xl sm:text-3xl font-extrabold block text-blue-200">Conquer</span>
                 </div>
-              </div>
-              
-              {/* FS logo */}
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-[1.5rem] overflow-hidden h-36">
-                <div className="h-full p-4 flex flex-col items-center justify-center relative">
-                  <div className="absolute inset-0 overflow-hidden">
-                    {[...Array(8)].map((_, i) => (
-                      <div 
-                        key={i} 
-                        className="absolute bg-white bg-opacity-10 h-1 w-full transform -rotate-45"
-                        style={{ top: `${i * 14 + 20}px`, left: '-10px', width: '150%' }}
-                      ></div>
-                    ))}
-                  </div>
-                  
-                  <div className="relative">
-                    <div className="text-white text-2xl mb-3">
-                      <code>&lt;/&gt;</code>
-                    </div>
-                    <div className="text-white font-bold text-6xl">FS</div>
-                  </div>
+                <div className="bg-blue-600 rounded-2xl p-16 text-white text-center">
+                  <span className="text-3xl sm:text-4xl font-bold">FS</span>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+
+      {/* Custom Scrollbar Hiding */}
+      <style jsx>{`
+        .scrollbar-hidden::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hidden {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
+    </section>
   );
 };
 
