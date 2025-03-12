@@ -40,3 +40,39 @@
 .read-the-docs {
   color: #888;
 }
+
+.App {
+  text-align: center;
+}
+
+section {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Add different background colors for better section distinction */
+#about {
+  background-color: #f8f9fa;
+}
+
+#team {
+  background-color: #ffffff;
+}
+
+#events {
+  background-color: #f8f9fa;
+}
+
+#contact {
+  background-color: #ffffff;
+}
