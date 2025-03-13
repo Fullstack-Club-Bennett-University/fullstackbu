@@ -90,10 +90,9 @@ export default function EventsCarousel() {
         </div>
 
         {/* Event Content with Sliding Animation */}
-        {/* Event Content with Depth Effect & Visible Background Cards */}
-        <div className="relative w-[450px] h-[450px] flex items-center justify-center">
+        {/* Event Content with Smooth Sliding & Depth Effect */}
+        <div className="relative w-[450px] h-[450px] flex items-center justify-center perspective-1000">
           {events.map((event, index) => {
-            // Calculate position offset for stacking effect
             const isPrevious =
               index === (currentIndex - 1 + events.length) % events.length;
             const isNext = index === (currentIndex + 1) % events.length;
@@ -102,17 +101,17 @@ export default function EventsCarousel() {
             return (
               <div
                 key={index}
-                className={`absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl shadow-xl border-4 border-blue-500 p-6 transition-all duration-700 ${
+                className={`absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 transition-all duration-[800ms] ease-in-out ${
                   isActive
-                    ? "z-10 opacity-100 scale-100 translate-y-0" // Main card in focus
+                    ? "z-10 opacity-100 scale-100 translate-y-0 shadow-lg" // Main card in focus
                     : isPrevious
-                    ? "z-0 opacity-50 scale-90 -translate-x-16 blur-sm" // Left (previous)
+                    ? "z-0 opacity-50 scale-90 -translate-x-20 blur-sm rotate-[-5deg] shadow-md" // Left (previous)
                     : isNext
-                    ? "z-0 opacity-50 scale-90 translate-x-16 blur-sm" // Right (next)
-                    : "hidden" // Hide all other events
+                    ? "z-0 opacity-50 scale-90 translate-x-20 blur-sm rotate-[5deg] shadow-md" // Right (next)
+                    : "hidden"
                 }`}
                 style={{
-                  transition: "all 0.7s cubic-bezier(0.4, 0, 0.2, 1)", // Smooth transition
+                  transformOrigin: "center",
                 }}
               >
                 {/* Event Image */}
