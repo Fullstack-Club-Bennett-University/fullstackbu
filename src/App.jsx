@@ -1,22 +1,23 @@
 // App.jsx
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Import components
-import Navbar from './components/Navbar/Navbar';
-import HeroSection from './components/HeroSection/HeroSection';
-import MeetTheTeamSection from './components/Teams/MeetTheTeamSection';
-import EventsSection from './components/Event/EventSection';
-import UpcomingEventsSection from './components/UpcomingEventsSection/UpcomingEventsSection';
-import NotFound from './components/NotFound';
-import Footer from './components/Footer/Footer';
+import Navbar from "./components/Navbar/Navbar";
+import HeroSection from "./components/HeroSection/HeroSection";
+import MeetTheTeamSection from "./components/Teams/MeetTheTeamSection";
+import EventsSection from "./components/Event/EventSection";
+import UpcomingEventsSection from "./components/UpcomingEventsSection/UpcomingEventsSection";
+import NotFound from "./components/NotFound";
+import Footer from "./components/Footer/Footer";
+import AwardsComponent from "./components/Awards/Awards";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Navbar />
-        <main style={{ paddingTop: '70px' }}>
+        <main style={{ paddingTop: "70px" }}>
           <Routes>
             {/* Main Route */}
             <Route
@@ -32,6 +33,9 @@ function App() {
                   </section>
                   <section id="UpcomingEventsSection">
                     <UpcomingEventsSection />
+                  </section>
+                  <section>
+                    <AwardsComponent />
                   </section>
                   <section id="footer">
                     <Footer />
