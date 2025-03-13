@@ -5,45 +5,38 @@ const MeetTheTeamSection = () => {
   const [activeMember, setActiveMember] = useState(0);
   const deptScrollRef = useRef(null);
 
-  // Team data (keeping your original data structure)
+  // Team data
   const departments = [
-    { id: 0, name: 'Leadership', icon: '👑' },
-    { id: 1, name: 'Photography', icon: '📷' },
-    { id: 2, name: 'Content', icon: '📱' },
-    { id: 3, name: 'Development', icon: '💻' },
-    { id: 4, name: 'Design', icon: '🎨' },
-    { id: 5, name: 'Engineering', icon: '⚙️' },
-    { id: 6, name: 'Architecture', icon: '🏛️' },
-    { id: 7, name: 'AI', icon: '🧠' },
-    { id: 8, name: 'Planning', icon: '📋' }
+    { id: 0, name: 'Office', icon: '👑' },
+    { id: 1, name: 'Social Media Team', icon: '📷' },
+    { id: 2, name: 'Content Team', icon: '📱' },
+    { id: 3, name: 'Techinal Team', icon: '💻' },
+    { id: 4, name: 'Design Team', icon: '🎨' },
+    { id: 5, name: 'Managment Team', icon: '⚙️' },
+    { id: 6, name: 'PR Team', icon: '🏛️' },
+    { id: 7, name: 'Multimedia Team', icon: '🧠' },
+    { id: 8, name: 'Research Team', icon: '📋' },
   ];
 
- 
   const teamMembers = [
     // Leadership Team
     {
       id: 0,
-      name: 'John Doe',
-      role: 'TEAM LEAD',
+      name: 'Aman Gangwar',
+      role: 'President',
       departmentId: 0,
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400',
       bio: 'Senior Team Lead with 8+ years of experience in software development and team management.',
-      additionalInfo: [
-        'Led multiple successful project deployments',
-        'Expert in agile methodologies'
-      ]
+      additionalInfo: ['Led multiple successful project deployments', 'Expert in agile methodologies'],
     },
     {
       id: 1,
-      name: 'Jane Smith',
-      role: 'PROJECT DIRECTOR',
+      name: 'Khushgra Gupta',
+      role: 'General Secretary',
       departmentId: 0,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400',
-      bio: 'Experienced Project Director driving innovation across multiple teams.',
-      additionalInfo: [
-        'Managed 20+ successful projects',
-        'Strategic planning expert'
-      ]
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // You can replace the image URL with the actual one later
+      bio: 'Dynamic and results-driven General Secretary with a passion for organizing and leadership.',
+      additionalInfo: ['Organized 50+ successful events', 'Leader in community engagement'],
     },
     // Photography Team
     {
@@ -53,10 +46,7 @@ const MeetTheTeamSection = () => {
       departmentId: 1,
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400',
       bio: 'Award-winning photographer with 10+ years of professional experience.',
-      additionalInfo: [
-        'Published in National Geographic',
-        'Expert in wildlife photography'
-      ]
+      additionalInfo: ['Published in National Geographic', 'Expert in wildlife photography'],
     },
     {
       id: 3,
@@ -65,50 +55,168 @@ const MeetTheTeamSection = () => {
       departmentId: 1,
       image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400',
       bio: 'Specialized in capturing memorable moments at corporate and social events.',
-      additionalInfo: [
-        'Shot 100+ major events',
-        'Expert in low-light photography'
-      ]
+      additionalInfo: ['Shot 100+ major events', 'Expert in low-light photography'],
     },
     // Development Team
     {
       id: 4,
-      name: 'Alex Johnson',
-      role: 'LEAD DEVELOPER',
+      name: 'Shubh Gupta',
+      role: 'Techinal Head',
       departmentId: 3,
-      image: 'https://avatars.githubusercontent.com/u/129139486?s=400&u=2ba574b1b840c3083f52c3bc166952fdb4f38e89&v=4',
+      image: 'https://avatars.githubusercontent.com/u/138377735?v=4',
       bio: 'Full-stack developer with expertise in React, Node.js, and cloud technologies.',
-      additionalInfo: [
-        'Created high-performance web apps',
-        'Open source contributor'
-      ]
+      additionalInfo: ['Created high-performance web apps', 'Open source contributor'],
     },
     {
       id: 5,
-      name: 'Alex Johnson',
-      role: 'LEAD DEVELOPER',
+      name: 'Vaibhav Kothari',
+      role: 'Techinal Co-Head',
       departmentId: 3,
       image: 'https://avatars.githubusercontent.com/u/129139486?s=400&u=2ba574b1b840c3083f52c3bc166952fdb4f38e89&v=4',
       bio: 'Full-stack developer with expertise in React, Node.js, and cloud technologies.',
-      additionalInfo: [
-        'Created high-performance web apps',
-        'Open source contributor'
-      ]
+      additionalInfo: ['Created high-performance web apps', 'Open source contributor'],
     },
     {
-      id:6,  
-      name: 'Emily Zhang',
+      id: 6,
+      name: 'Kartik Gupta',
+      role: 'Techinal Co-Head',
+      departmentId: 3,
+      image: 'https://avatars.githubusercontent.com/u/138377735?v=4',
+      bio: 'Full-stack developer with expertise in React, Node.js, and cloud technologies.',
+      additionalInfo: ['Created high-performance web apps', 'Open source contributor'],
+    },
+    {
+      id: 7,
+      name: 'Shantanu Kumar',
       role: 'BACKEND DEVELOPER',
       departmentId: 3,
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400',
+      image: 'https://avatars.githubusercontent.com/u/141389221?v=4',
       bio: 'Backend specialist with focus on scalable architecture and performance.',
-      additionalInfo: [
-        'Microservices architecture expert',
-        'Database optimization specialist'
-      ]
-    }
+      additionalInfo: ['Microservices architecture expert', 'Database optimization specialist'],
+    },
+    {
+      id: 8,
+      name: 'Vishu Pratap',
+      role: 'BACKEND DEVELOPER',
+      departmentId: 3,
+      image: 'https://avatars.githubusercontent.com/u/144529111?v=4',
+      bio: 'Backend specialist with focus on scalable architecture and performance.',
+      additionalInfo: ['Microservices architecture expert', 'Database optimization specialist'],
+    },
+    {
+      id: 9,
+      name: 'Avi Srivastava',
+      role: 'BACKEND DEVELOPER',
+      departmentId: 3,
+      image: 'https://avatars.githubusercontent.com/u/141389221?v=4',
+      bio: 'Backend specialist with focus on scalable architecture and performance.',
+      additionalInfo: ['Microservices architecture expert', 'Database optimization specialist'],
+    },
+
+    {
+      id: 9,
+      name: 'Grisha',
+      role: 'Multimedia Head',
+      departmentId: 7,
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400', // Replace with actual image
+      bio: 'Creative leader with extensive experience in multimedia production.',
+      additionalInfo: ['Led multiple multimedia campaigns', 'Expert in video and audio editing'],
+    },
+    {
+      id: 10,
+      name: 'Shrijan',
+      role: 'Multimedia Co-Head',
+      departmentId: 7,
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      bio: 'Collaborative team player in charge of executing multimedia projects.',
+      additionalInfo: ['Skilled in motion graphics', 'Expert in video direction and production'],
+    },
+    {
+      id: 11,
+      name: 'Ayush',
+      role: 'Multimedia Member',
+      departmentId: 7,
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      bio: 'Detail-oriented multimedia artist passionate about storytelling.',
+      additionalInfo: ['Specializes in animation', 'Experience with editing software like Adobe Premiere'],
+    },
+    // Content Team
+    {
+      id: 12,
+      name: 'Manasvi',
+      role: 'Content Co-Head',
+      departmentId: 2,
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400', // Replace with actual image
+      bio: 'Content strategist and editor with a flair for compelling storytelling.',
+      additionalInfo: ['Led content for multiple high-traffic websites', 'Expert in SEO and content marketing'],
+    },
+    {
+      id: 13,
+      name: 'Tarun',
+      role: 'Content Head',
+      departmentId: 2,
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      bio: 'Skilled content manager with experience in creating engaging and effective content strategies.',
+      additionalInfo: ['Produced content that increased engagement by 40%', 'Specialized in long-form content'],
+    },
+    // Management Team
+    {
+      id: 14,
+      name: 'Sarthak Jain',
+      role: 'Management Head',
+      departmentId: 5,
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      bio: 'Strategic thinker with a strong background in project management and leadership.',
+      additionalInfo: ['Led organizational restructuring', 'Expert in team management and resource allocation'],
+    },
+    {
+      id: 15,
+      name: 'Harshit',
+      role: 'Management Member',
+      departmentId: 5,
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
+      additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
+    },
+    // PR Team
+    {
+      id: 16,
+      name: 'Aeishni Yadhav',
+      role: 'PR Head',
+      departmentId: 6,
+      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
   ];
-  
+
+  // Filter team members based on the active department
+  const filteredMembers = teamMembers.filter((member) => member.departmentId === activeDepartment);
+
+  // Ensure activeMember is within bounds whenever filteredMembers changes
+  useEffect(() => {
+    if (filteredMembers.length > 0 && activeMember >= filteredMembers.length) {
+      setActiveMember(filteredMembers.length - 1);
+    }
+  }, [filteredMembers, activeMember]);
+
+  // Handle department change and reset activeMember
+  const handleDepartmentChange = (deptId) => {
+    setActiveDepartment(deptId);
+    setActiveMember(0); // Reset to the first member of the new department
+  };
+
+  // Navigate through team members
+  const navigateTeam = (direction) => {
+    if (filteredMembers.length <= 1) return;
+    setActiveMember((prev) =>
+      direction === 'next'
+        ? (prev + 1) % filteredMembers.length
+        : (prev - 1 + filteredMembers.length) % filteredMembers.length
+    );
+  };
+
+  // Scroll department into view
   useEffect(() => {
     if (deptScrollRef.current) {
       const activeButton = deptScrollRef.current.children[activeDepartment];
@@ -116,25 +224,7 @@ const MeetTheTeamSection = () => {
     }
   }, [activeDepartment]);
 
-  const handleDepartmentChange = (deptId) => {
-    const newDeptMembers = teamMembers.filter(member => member.departmentId === deptId);
-    const currentDeptMembers = teamMembers.filter(member => member.departmentId === activeDepartment);
-    const relativePosition = activeMember / currentDeptMembers.length;
-    const newPosition = Math.floor(relativePosition * newDeptMembers.length);
-    
-    setActiveDepartment(deptId);
-    setActiveMember(Math.min(newPosition, newDeptMembers.length - 1));
-  };
-
-  const navigateTeam = (direction) => {
-    if (filteredMembers.length <= 1) return;
-    setActiveMember(prev => direction === 'next' 
-      ? (prev + 1) % filteredMembers.length 
-      : (prev - 1 + filteredMembers.length) % filteredMembers.length
-    );
-  };
-
-  const filteredMembers = teamMembers.filter(member => member.departmentId === activeDepartment);
+  // Safely select the current member
   const currentMember = filteredMembers[activeMember] || teamMembers[0];
 
   return (
@@ -146,19 +236,18 @@ const MeetTheTeamSection = () => {
 
         <div className="bg-black/90 backdrop-blur-sm rounded-3xl shadow-2xl p-4 sm:p-6">
           {/* Mobile Department Scroll */}
-          <div 
+          <div
             ref={deptScrollRef}
-            className="mb-6 flex overflow-x-auto snap-x snap-mandatory scrollbar-hidden pb-2
-              lg:hidden touch-pan-x"
+            className="mb-6 flex overflow-x-auto snap-x snap-mandatory scrollbar-hidden pb-2 lg:hidden touch-pan-x"
           >
-            {departments.map(dept => (
+            {departments.map((dept) => (
               <button
                 key={dept.id}
                 onClick={() => handleDepartmentChange(dept.id)}
-                className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 mx-1 rounded-xl transition-all snap-center
-                  ${activeDepartment === dept.id 
-                    ? 'bg-blue-600 text-white shadow-md' 
-                    : 'bg-blue-100 text-blue-600 hover:bg-blue-200'}`}
+                className={`flex-shrink-0 flex items-center gap-2 px-4 py-2 mx-1 rounded-xl transition-all snap-center ${activeDepartment === dept.id
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'bg-blue-100 text-blue-600 hover:bg-blue-200'
+                  }`}
               >
                 <span className="text-xl">{dept.icon}</span>
                 <span className="text-sm font-medium whitespace-nowrap">{dept.name}</span>
@@ -167,18 +256,18 @@ const MeetTheTeamSection = () => {
           </div>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[auto,1fr,auto] gap-4 lg:gap-3">
             {/* Desktop Department Sidebar */}
             <div className="hidden lg:block lg:w-64 shrink-0">
-              <div className="flex flex-col gap-2 p-4 bg-blue-600 rounded-2xl h-full overflow-y-auto scrollbar-thin scrollbar-thumb-blue-400">
-                {departments.map(dept => (
+              <div className="flex flex-col gap-2 p-4 bg-blue-600 rounded-[30px] h-full overflow-y-auto scrollbar-thin scrollbar-thumb-blue-400">
+                {departments.map((dept) => (
                   <button
                     key={dept.id}
                     onClick={() => handleDepartmentChange(dept.id)}
-                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all w-full
-                      ${activeDepartment === dept.id 
-                        ? 'bg-white text-blue-600 shadow-md' 
-                        : 'text-white hover:bg-blue-700'}`}
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all w-full ${activeDepartment === dept.id
+                      ? 'bg-white text-blue-600 shadow-md'
+                      : 'text-white hover:bg-blue-700'
+                      }`}
                   >
                     <span className="text-2xl">{dept.icon}</span>
                     <span className="text-sm font-medium">{dept.name}</span>
@@ -188,14 +277,14 @@ const MeetTheTeamSection = () => {
             </div>
 
             {/* Team Member Card */}
-            <div className="relative bg-gradient-to-br from-blue-500 to-blue-700 rounded-2xl overflow-hidden">
+            <div className="rounded-[50px] relative bg-gradient-to-br from-blue-500 to-blue-700 overflow-hidden">
               <div className="flex flex-col sm:grid sm:grid-cols-2 h-full">
                 {/* Image */}
                 <div className="p-4 sm:p-6">
                   <img
                     src={currentMember?.image}
                     alt={currentMember?.name}
-                    className="w-full h-64 sm:h-80 md:h-full object-cover rounded-xl border-4 border-white shadow-lg"
+                    className="w-full h-64 sm:h-80 md:h-full object-cover rounded-3xl border-4 border-white shadow-lg"
                     loading="lazy"
                   />
                 </div>
@@ -221,8 +310,8 @@ const MeetTheTeamSection = () => {
                   {/* Mobile Navigation */}
                   {filteredMembers.length > 1 && (
                     <div className="flex items-center justify-between mt-4 sm:mt-6">
-                      <button 
-                        onClick={() => navigateTeam('prev')} 
+                      <button
+                        onClick={() => navigateTeam('prev')}
                         className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full hover:bg-white/30"
                         aria-label="Previous team member"
                       >
@@ -233,14 +322,14 @@ const MeetTheTeamSection = () => {
                           <button
                             key={index}
                             onClick={() => setActiveMember(index)}
-                            className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full transition-all
-                              ${index === activeMember ? 'bg-white scale-125' : 'bg-blue-300'}`}
+                            className={`w-2 h-2 sm:w-2 sm:h-2 rounded-full transition-all ${index === activeMember ? 'bg-white scale-125' : 'bg-blue-300'
+                              }`}
                             aria-label={`Go to team member ${index + 1}`}
                           />
                         ))}
                       </div>
-                      <button 
-                        onClick={() => navigateTeam('next')} 
+                      <button
+                        onClick={() => navigateTeam('next')}
                         className="w-10 h-10 flex items-center justify-center bg-white/20 rounded-full hover:bg-white/30"
                         aria-label="Next team member"
                       >
@@ -254,14 +343,24 @@ const MeetTheTeamSection = () => {
 
             {/* Desktop Right Sidebar */}
             <div className="hidden lg:block lg:w-48 shrink-0">
-              <div className="h-full flex flex-col gap-4">
-                <div className="bg-blue-600 rounded-2xl p-4 text-white text-center flex-1 flex flex-col justify-center">
-                  <span className="text-xl sm:text-2xl font-bold block">Code</span>
-                  <span className="text-xl sm:text-2xl font-bold block">Create</span>
-                  <span className="text-2xl sm:text-3xl font-extrabold block text-blue-200">Conquer</span>
+              <div className="h-full flex flex-col gap-2">
+                {/* Top Section (Code Create Conquer) */}
+                <div className="bg-blue-600 rounded-2xl rounded-t-[250px] rounded-b-[150px] p-0 text-white text-center flex-1">
+                  <img
+                    src="./ccc.png"
+                    alt="Code Create Conquer"
+                    className="w-full h-full object-cover rounded-t-[250px] rounded-b-[150px]"
+                    draggable="false"
+                  />
                 </div>
-                <div className="bg-blue-600 rounded-2xl p-16 text-white text-center">
-                  <span className="text-3xl sm:text-4xl font-bold">FS</span>
+                {/* Bottom Section (FS Logo) */}
+                <div className="bg-black rounded-[50px] p-0 text-white text-center h-48">
+                  <img
+                    src="./fs.png"
+                    alt="FS Logo"
+                    className="w-full h-full object-cover rounded-[50px]"
+                    draggable="false"
+                  />
                 </div>
               </div>
             </div>
