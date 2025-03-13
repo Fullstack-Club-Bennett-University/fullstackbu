@@ -1,230 +1,116 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const ExploreEvents = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+const events = [
+  {
+    image: "/events/event1.png",
+    description:
+      "Starter event for fullstack Club where we tell the juniors about learning material, how to tackle subjects and how to achieve 9 SGPA by perfecting their strategies to improve grade, personality and attitude!!!",
+    leftCard: "/events/Subtract.png",
+  },
+  {
+    image: "/events/event1.png",
+    description: "Another exciting event coming soon!",
+    leftCard: "/events/Subtract2.png",
+  },
+];
 
-  // Events data matching the images in your reference
-  const events = [
-    {
-      id: 1,
-      image: "/api/placeholder/400/500", // Placeholder for the Kingston House party image with disco ball
-      title: "Kingston House Party",
-    },
-    {
-      id: 2,
-      image: "/api/placeholder/400/300", // Placeholder for the star lanterns image
-      title: "9.2 SGPA",
-      description:
-        "Starter event for fullstack Club where we tell the juniors about learning material, how to tackle subjects and how to achieve 9 SGPA by perfecting their strategies to improve grade, personality and attitude!!!",
-    },
-  ];
-
-  const totalSlides = events.length;
+export default function EventsCarousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === totalSlides - 1 ? 0 : prev + 1));
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? totalSlides - 1 : prev - 1));
-  };
-
-  const goToSlide = (index) => {
-    setCurrentSlide(index);
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? events.length - 1 : prevIndex - 1
+    );
   };
 
   return (
-    <div className="w-full bg-gradient-to-b from-blue-200 to-blue-100 p-6 pb-16 relative overflow-hidden">
-      {/* Header with star decorations */}
-      <div className="relative flex justify-center items-center mb-10">
-        <div className="absolute left-8 md:left-20">
-          <OrangeStar />
-        </div>
-        <h2 className="text-5xl md:text-6xl font-bold text-center tracking-wide">
-          EXPLORE OUR EVENTS
-        </h2>
-        <div className="absolute right-8 md:right-20">
-          <OrangeStar />
-        </div>
-        <div className="absolute opacity-10 rotate-12 -z-10 text-orange-300 text-2xl font-bold">
-          EVENTS! EVENTS! EVENTS! EVENTS! EVENTS! EVENTS!
-        </div>
+    <div className="relative flex flex-col items-center py-12 bg-gradient-to-b from-white to-blue-200">
+      {/* Title */}
+      <div className="flex items-center gap-4 mb-8">
+        <img src="/events/Soft Star.png" width={50} height={50} alt="Star" />
+        <h2 className="text-4xl font-bold">EXPLORE OUR EVENTS</h2>
+        <img src="/events/Soft Star.png" width={50} height={50} alt="Star" />
       </div>
 
-      {/* Cards layout */}
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 relative">
-        {/* Card 1 - Always visible with orange border */}
-        <div
-          className={`transform transition-all duration-500 ${
-            currentSlide === 0 ? "opacity-100 z-10" : "opacity-50 z-0"
-          }`}
-        >
-          <div className="rounded-3xl overflow-hidden border-4 border-orange-500 relative">
+      {/* Event Wrapper */}
+      <div className="relative flex items-center w-full max-w-5xl px-8 gap-16">
+        {/* Left Card with Arrows */}
+        <div className="relative flex flex-col items-center">
+          {/* Left Button */}
+          <button
+            onClick={prevSlide}
+            className="absolute left-[-40px] top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-md hover:bg-gray-100 transition"
+          >
             <img
-              src={
-                currentSlide === 0
-                  ? events[0].image
-                  : "/api/placeholder/400/500"
-              }
-              alt="Kingston House Party"
-              className="w-full h-full object-cover"
+              src="/events/solar_play-bold.png"
+              width={35}
+              height={35}
+              className="rotate-180"
+              alt="Previous"
             />
+          </button>
 
-            {/* Left navigation button (blue triangle) */}
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20"
-              aria-label="Previous slide"
-            >
-              <div className="flex items-center justify-center">
-                <div className="w-10 h-10 bg-blue-500 rounded-sm flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M15 19L8 12L15 5"
-                      stroke="white"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </button>
+          {/* Left Card */}
+          <img
+            src={events[currentIndex].leftCard}
+            width={360}
+            height={480}
+            alt="Left Card"
+            className="rounded-lg shadow-lg border-4 border-orange-400"
+          />
 
-            {/* Right navigation button (blue triangle) */}
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20"
-              aria-label="Next slide"
-            >
-              <div className="flex items-center justify-center">
-                <div className="w-10 h-10 bg-blue-500 rounded-sm flex items-center justify-center">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M9 5L16 12L9 19"
-                      stroke="white"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </button>
-          </div>
+          {/* Right Button (Placed to the right of Left Card) */}
+          <button
+            onClick={nextSlide}
+            className="absolute right-[-40px] top-1/2 transform -translate-y-1/2 bg-white rounded-full p-3 shadow-md hover:bg-gray-100 transition"
+          >
+            <img
+              src="/events/solar_play-bold.png"
+              width={35}
+              height={35}
+              alt="Next"
+            />
+          </button>
         </div>
 
-        {/* Card 2 - SGPA with blue border */}
-        <div
-          className={`transform transition-all duration-500 ${
-            currentSlide === 1 ? "opacity-100 z-10" : "opacity-50 z-0"
-          }`}
-        >
-          <div className="rounded-3xl overflow-hidden border-4 border-blue-500 bg-white p-4">
-            <div className="w-full h-64 rounded-2xl overflow-hidden mb-6">
-              <img
-                src={
-                  currentSlide === 1
-                    ? events[1].image
-                    : "/api/placeholder/400/300"
-                }
-                alt="Star Lanterns"
-                className="w-full h-full object-cover"
-              />
-            </div>
-            <div className="flex items-start">
-              <div className="mr-4">
-                <SGPALogo />
-              </div>
-              <div>
-                <p className="text-base">
-                  Starter event for fullstack Club where we tell the juniors
-                  about learning material, how to tackle subjects and how to
-                  achieve 9 SGPA by perfecting their strategies to improve
-                  grade, personality and attitude!!!
-                </p>
-              </div>
-            </div>
+        {/* Event Content */}
+        <div className="relative flex flex-col items-center text-center bg-white rounded-xl shadow-xl border-4 border-blue-500 p-8 w-3/4">
+          <img
+            src={events[currentIndex].image}
+            width={320}
+            height={220}
+            className="rounded-lg shadow-md"
+            alt="Event Image"
+          />
+          <div className="mt-4">
+            <img
+              src="/events/image 17.png"
+              width={100}
+              height={50}
+              alt="9.2 SGPA Logo"
+            />
           </div>
+          <p className="mt-4 text-lg text-gray-700">
+            {events[currentIndex].description}
+          </p>
         </div>
       </div>
 
-      {/* Indicator dots at the bottom */}
-      <div className="flex justify-center mt-8">
-        <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full">
-          {[...Array(totalSlides)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => goToSlide(index)}
-              className={`w-6 h-6 rounded-full transition-colors ${
-                currentSlide === index ? "bg-orange-500" : "bg-gray-300"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
-        </div>
+      {/* Dots Indicator */}
+      <div className="flex mt-6 space-x-2">
+        {events.map((_, index) => (
+          <span
+            key={index}
+            className={`w-4 h-4 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "bg-orange-500 scale-110" : "bg-gray-300"
+            }`}
+          ></span>
+        ))}
       </div>
     </div>
   );
-};
-
-// SVG Components
-const OrangeStar = () => (
-  <svg
-    width="50"
-    height="50"
-    viewBox="0 0 50 50"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M25 0C25 0 31.25 18.75 50 25C31.25 31.25 25 50 25 50C25 50 18.75 31.25 0 25C18.75 18.75 25 0 25 0Z"
-      fill="#FF7A00"
-    />
-  </svg>
-);
-
-const SGPALogo = () => (
-  <svg
-    width="100"
-    height="80"
-    viewBox="0 0 100 80"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <text
-      x="0"
-      y="45"
-      fill="#FF7A00"
-      fontSize="45"
-      fontWeight="bold"
-      style={{ stroke: "#40C9FF", strokeWidth: "1px" }}
-    >
-      9.2
-    </text>
-    <text
-      x="0"
-      y="75"
-      fill="#FF7A00"
-      fontSize="30"
-      fontWeight="bold"
-      style={{ stroke: "#40C9FF", strokeWidth: "1px" }}
-    >
-      SGPA
-    </text>
-  </svg>
-);
-
-export default ExploreEvents;
+}
