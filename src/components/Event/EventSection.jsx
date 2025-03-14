@@ -1,4 +1,5 @@
 import { useState } from "react";
+import WavyMarquee from "./WavyMarquee";
 
 const events = [
   {
@@ -41,21 +42,22 @@ export default function EventsCarousel() {
 
   return (
     <div className="relative flex flex-col items-center py-12 bg-gradient-to-b from-white to-blue-200">
-      {/* Title */}
-      <div className="flex items-center gap-4 mb-10">
-        <img src="/events/Soft Star.png" width={50} height={50} alt="Star" />
-        <h2 className="text-4xl font-bold text-gray-900">EXPLORE OUR EVENTS</h2>
-        <img src="/events/Soft Star.png" width={50} height={50} alt="Star" />
+      {/* Title with Wavy Marquee */}
+      <div className="relative flex flex-col items-center w-full">
+        <WavyMarquee />
+        <h2 className="text-4xl font-bold text-gray-900 -mt-14">
+          EXPLORE OUR EVENTS
+        </h2>
       </div>
 
       {/* Event Wrapper */}
-      <div className="relative flex items-center w-full max-w-5xl gap-24 justify-center overflow-hidden">
+      <div className="relative flex items-center w-full max-w-5xl gap-32 justify-center mt-10">
         {/* Left Card with Arrows */}
         <div className="relative flex flex-col items-center">
           {/* Left Button */}
           <button
             onClick={prevSlide}
-            className="absolute left-[-50px] top-1/2 transform -translate-y-1/2 -translate-x-1/4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition"
+            className="absolute left-[-60px] top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition"
           >
             <img
               src="/events/solar_play-bold.png"
@@ -78,7 +80,7 @@ export default function EventsCarousel() {
           {/* Right Button */}
           <button
             onClick={nextSlide}
-            className="absolute right-[-50px] top-1/2 transform -translate-y-1/2 translate-x-1/4 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition"
+            className="absolute right-[-60px] top-1/2 transform -translate-y-1/2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 transition"
           >
             <img
               src="/events/solar_play-bold.png"
@@ -89,7 +91,6 @@ export default function EventsCarousel() {
           </button>
         </div>
 
-        {/* Event Content with Sliding Animation */}
         {/* Event Content with Smooth Sliding & Depth Effect */}
         <div className="relative w-[450px] h-[450px] flex items-center justify-center perspective-1000">
           {events.map((event, index) => {
@@ -101,14 +102,14 @@ export default function EventsCarousel() {
             return (
               <div
                 key={index}
-                className={`absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 transition-all duration-[800ms] ease-in-out ${
+                className={`absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 transition-all duration-[1000ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
                   isActive
-                    ? "z-10 opacity-100 scale-100 translate-y-0 shadow-lg" // Main card in focus
+                    ? "z-20 opacity-100 scale-100 translate-y-0 translate-z-[0px]"
                     : isPrevious
-                    ? "z-0 opacity-50 scale-90 -translate-x-20 blur-sm rotate-[-5deg]" // Left (previous)
+                    ? "z-10 opacity-60 scale-[0.92] -translate-x-[15%] rotate-y-[7deg] translate-z-[-50px]"
                     : isNext
-                    ? "z-0 opacity-50 scale-90 translate-x-20 blur-sm rotate-[5deg]" // Right (next)
-                    : "hidden"
+                    ? "z-10 opacity-60 scale-[0.92] translate-x-[15%] rotate-y-[-7deg] translate-z-[-50px]"
+                    : "z-0 opacity-30 scale-90 translate-y-[10%] blur-sm"
                 }`}
                 style={{
                   transformOrigin: "center",

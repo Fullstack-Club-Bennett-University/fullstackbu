@@ -33,6 +33,24 @@
   }
 }
 
+
+
+@keyframes moveText {
+  from {
+    startOffset: 100%;
+  }
+  to {
+    startOffset: 0%;
+  }
+}
+
+textPath {
+  animation: moveText 5s linear infinite;
+}
+
+
+
+
 .card {
   padding: 2em;
 }
