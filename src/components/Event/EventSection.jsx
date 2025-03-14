@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WavyMarquee from "./WavyMarquee";
 
 const events = [
@@ -29,6 +29,18 @@ const events = [
 
 export default function EventsCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [mouseX, setMouseX] = useState(0);
+  const [mouseY, setMouseY] = useState(0);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMouseX(e.clientX - window.innerWidth / 2);
+      setMouseY(e.clientY - window.innerHeight / 2);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   const nextSlide = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
@@ -45,13 +57,13 @@ export default function EventsCarousel() {
       {/* Title with Wavy Marquee */}
       <div className="relative flex flex-col items-center w-full">
         <WavyMarquee />
-        <h2 className="text-4xl font-bold text-gray-900 -mt-14">
+        <h2 className="text-4xl font-bold text-gray-900 -mt-14 z-10">
           EXPLORE OUR EVENTS
         </h2>
       </div>
 
       {/* Event Wrapper */}
-      <div className="relative flex items-center w-full max-w-5xl gap-32 justify-center mt-10">
+      <div className="relative flex items-center w-full max-w-5xl gap-32 justify-center mt-20">
         {/* Left Card with Arrows */}
         <div className="relative flex flex-col items-center">
           {/* Left Button */}
@@ -92,27 +104,55 @@ export default function EventsCarousel() {
         </div>
 
         {/* Event Content with Smooth Sliding & Depth Effect */}
-        <div className="relative w-[450px] h-[450px] flex items-center justify-center perspective-1000">
+        <div className="relative w-[450px] h-[450px] flex items-center justify-center perspective-[1800px]">
           {events.map((event, index) => {
             const isPrevious =
               index === (currentIndex - 1 + events.length) % events.length;
             const isNext = index === (currentIndex + 1) % events.length;
             const isActive = index === currentIndex;
+            const isBehind = !isPrevious && !isNext && !isActive;
+
+            // Dynamic depth & positioning
+            const translateZ = isActive
+              ? 250
+              : isPrevious || isNext
+              ? 100
+              : -50;
+
+            const translateX = isActive
+              ? 0
+              : isPrevious
+              ? "-15%"
+              : isNext
+              ? "15%"
+              : "25%";
+
+            const rotateY = isPrevious ? "20deg" : isNext ? "-20deg" : "0deg";
 
             return (
               <div
                 key={index}
-                className={`absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 transition-all duration-[1000ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
-                  isActive
-                    ? "z-20 opacity-100 scale-100 translate-y-0 translate-z-[0px]"
-                    : isPrevious
-                    ? "z-10 opacity-60 scale-[0.92] -translate-x-[15%] rotate-y-[7deg] translate-z-[-50px]"
-                    : isNext
-                    ? "z-10 opacity-60 scale-[0.92] translate-x-[15%] rotate-y-[-7deg] translate-z-[-50px]"
-                    : "z-0 opacity-30 scale-90 translate-y-[10%] blur-sm"
-                }`}
+                className={`absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 transition-all duration-[1000ms] ease-[cubic-bezier(0.4,0,0.2,1)] shadow-xl
+          ${
+            isActive
+              ? "z-[30] opacity-100"
+              : isBehind
+              ? "z-[10] opacity-50 blur-[2px]"
+              : "z-[20] opacity-80"
+          }
+        `}
                 style={{
                   transformOrigin: "center",
+                  transform: `
+            translateX(calc(${translateX} + ${mouseX * 0.05}px))
+            translateY(${mouseY * 0.05}px)
+            translateZ(${translateZ}px)
+            rotateY(${rotateY})
+          `,
+                  transition: "transform 0.3s ease-out",
+                  animation: isActive
+                    ? "floatUpDown 3s ease-in-out infinite"
+                    : "none",
                 }}
               >
                 {/* Event Image */}
@@ -121,17 +161,6 @@ export default function EventsCarousel() {
                     src={event.image}
                     className="w-full h-full object-cover"
                     alt="Event Image"
-                  />
-                </div>
-
-                {/* SGPA Badge */}
-                <div className="absolute top-[150px] left-6 bg-white px-4 py-1 rounded-lg shadow-md border-2 border-orange-400">
-                  <img
-                    src="/events/image 17.png"
-                    width={100}
-                    height={50}
-                    alt="9.2 SGPA Logo"
-                    className="drop-shadow-lg"
                   />
                 </div>
 
@@ -146,12 +175,12 @@ export default function EventsCarousel() {
       </div>
 
       {/* Dots Indicator */}
-      <div className="flex mt-8 space-x-3">
+      <div className="flex mt-16 space-x-3">
         {events.map((_, index) => (
           <span
             key={index}
             className={`w-4 h-4 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-orange-500 scale-110" : "bg-gray-300"
+              index === currentIndex ? "scale-130 bg-orange-500" : "bg-gray-400"
             }`}
           ></span>
         ))}
