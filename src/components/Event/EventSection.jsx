@@ -105,9 +105,9 @@ export default function EventsCarousel() {
                   isActive
                     ? "z-10 opacity-100 scale-100 translate-y-0 shadow-lg" // Main card in focus
                     : isPrevious
-                    ? "z-0 opacity-50 scale-90 -translate-x-20 blur-sm rotate-[-5deg] shadow-md" // Left (previous)
+                    ? "z-0 opacity-50 scale-90 -translate-x-20 blur-sm rotate-[-5deg]" // Left (previous)
                     : isNext
-                    ? "z-0 opacity-50 scale-90 translate-x-20 blur-sm rotate-[5deg] shadow-md" // Right (next)
+                    ? "z-0 opacity-50 scale-90 translate-x-20 blur-sm rotate-[5deg]" // Right (next)
                     : "hidden"
                 }`}
                 style={{
