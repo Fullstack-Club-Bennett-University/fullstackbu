@@ -117,6 +117,7 @@ export default function EventsCarousel() {
             />
           </button>
         </div>
+
         <div className="relative w-[450px] h-[450px] flex items-center justify-center perspective-[1200px]">
           {events.map((event, index) => {
             const isPrevious =
@@ -130,24 +131,27 @@ export default function EventsCarousel() {
                 className="absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 shadow-xl"
                 initial={{
                   opacity: 0,
-                  scale: isActive ? 0.9 : 0.8,
-                  x: isPrevious ? -100 : isNext ? 100 : 0,
-                  rotateY: isPrevious ? 20 : isNext ? -20 : 0,
-                  filter: "blur(10px)",
+                  scale: isActive ? 0.95 : 0.85,
+                  x: isPrevious ? -80 : isNext ? 80 : 0,
+                  rotateY: isPrevious ? 15 : isNext ? -15 : 0,
+                  filter: isActive ? "blur(0px)" : "blur(5px)",
+                  zIndex: isActive ? 30 : isPrevious || isNext ? 20 : 10,
                 }}
                 animate={{
-                  opacity: isActive ? 1 : 0.7,
+                  opacity: isActive ? 1 : 0.8,
                   scale: isActive ? 1 : 0.9,
                   x: isActive ? 0 : isPrevious ? -50 : 50,
-                  rotateY: isActive ? 0 : isPrevious ? 15 : -15,
-                  filter: "blur(2px)",
+                  rotateY: isActive ? 0 : isPrevious ? 10 : -10,
+                  filter: isActive ? "blur(0px)" : "blur(2px)",
+                  zIndex: isActive ? 30 : isPrevious || isNext ? 20 : 10,
                 }}
                 exit={{
                   opacity: 0,
-                  scale: 0.8,
-                  x: isPrevious ? -150 : isNext ? 150 : 0,
-                  rotateY: isPrevious ? 30 : isNext ? -30 : 0,
-                  filter: "blur(20px)",
+                  scale: 0.85,
+                  x: isPrevious ? -120 : isNext ? 120 : 0,
+                  rotateY: isPrevious ? 20 : isNext ? -20 : 0,
+                  filter: "blur(10px)",
+                  zIndex: 5,
                 }}
                 transition={{
                   duration: 0.8,

@@ -1,12 +1,14 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Analytics } from "@vercel/analytics/react"; 
+import { Analytics } from "@vercel/analytics/react";
 
 // Import components
 import Navbar from "./components/Navbar/Navbar";
 import HeroSection from "./components/HeroSection/HeroSection";
 import MeetTheTeamSection from "./components/Teams/MeetTheTeamSection";
 import EventsSection from "./components/Event/EventSection";
+//check
+import EventsCarousel2 from "./components/BetterEvent/EventSection2";
 import UpcomingEventsSection from "./components/UpcomingEventsSection/UpcomingEventsSection";
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer/Footer";
@@ -28,6 +30,9 @@ function App() {
                     <HeroSection />
                     <section id="event">
                       <EventsSection />
+                    </section>
+                    <section id="event">
+                      <EventsCarousel2 />
                     </section>
                     <section id="team">
                       <MeetTheTeamSection />
