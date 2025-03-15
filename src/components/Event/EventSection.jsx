@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import WavyMarquee from "./WavyMarquee";
+import { motion } from "framer-motion";
 
 const events = [
   {
@@ -80,12 +81,26 @@ export default function EventsCarousel() {
             />
           </button>
 
-          {/* Left Card (Fixed Size) */}
-          <div className="w-[232.5px] h-[406px] flex items-center justify-center rounded-lg overflow-hidden">
-            <img
+          {/* Left Card (Fixed Size) with Cinematic Transition */}
+          <div className="relative w-[232.5px] h-[406px] flex items-center justify-center rounded-lg overflow-visible">
+            <motion.img
+              key={currentIndex} // React re-renders on change
               src={events[currentIndex].leftCard}
               alt="Left Card"
-              className="object-cover w-full h-full"
+              className="absolute object-cover w-full h-full rounded-lg"
+              initial={{ opacity: 0, scale: 1.1 }} // Starts slightly zoomed & transparent
+              animate={{ opacity: 1, scale: 1 }} // Fades in with a soft zoom
+              exit={{ opacity: 0, scale: 0.95 }} // Fades out subtly
+              transition={{ duration: 1, ease: "easeInOut" }} // Smooth transition
+            />
+
+            {/* Light Sweep Effect */}
+            <motion.div
+              key={`sweep-${currentIndex}`} // Change effect per image
+              className="absolute top-0 left-0 w-full h-full bg-white/30 blur-[10px]"
+              initial={{ x: "-100%" }}
+              animate={{ x: "100%" }}
+              transition={{ duration: 0.8, ease: "easeInOut", delay: 0.2 }}
             />
           </div>
 
@@ -102,65 +117,52 @@ export default function EventsCarousel() {
             />
           </button>
         </div>
-
-        {/* Event Content with Smooth Sliding & Depth Effect */}
-        <div className="relative w-[450px] h-[450px] flex items-center justify-center perspective-[1800px]">
+        <div className="relative w-[450px] h-[450px] flex items-center justify-center perspective-[1200px]">
           {events.map((event, index) => {
             const isPrevious =
               index === (currentIndex - 1 + events.length) % events.length;
             const isNext = index === (currentIndex + 1) % events.length;
             const isActive = index === currentIndex;
-            const isBehind = !isPrevious && !isNext && !isActive;
-
-            // Dynamic depth & positioning
-            const translateZ = isActive
-              ? 250
-              : isPrevious || isNext
-              ? 100
-              : -50;
-
-            const translateX = isActive
-              ? 0
-              : isPrevious
-              ? "-15%"
-              : isNext
-              ? "15%"
-              : "25%";
-
-            const rotateY = isPrevious ? "20deg" : isNext ? "-20deg" : "0deg";
 
             return (
-              <div
+              <motion.div
                 key={index}
-                className={`absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 transition-all duration-[1000ms] ease-[cubic-bezier(0.4,0,0.2,1)] shadow-xl
-          ${
-            isActive
-              ? "z-[30] opacity-100"
-              : isBehind
-              ? "z-[10] opacity-50 blur-[2px]"
-              : "z-[20] opacity-80"
-          }
-        `}
-                style={{
-                  transformOrigin: "center",
-                  transform: `
-            translateX(calc(${translateX} + ${mouseX * 0.05}px))
-            translateY(${mouseY * 0.05}px)
-            translateZ(${translateZ}px)
-            rotateY(${rotateY})
-          `,
-                  transition: "transform 0.3s ease-out",
-                  animation: isActive
-                    ? "floatUpDown 3s ease-in-out infinite"
-                    : "none",
+                className="absolute w-full h-full flex flex-col items-center text-center bg-white rounded-3xl border-4 border-blue-500 p-6 shadow-xl"
+                initial={{
+                  opacity: 0,
+                  scale: isActive ? 0.9 : 0.8,
+                  x: isPrevious ? -100 : isNext ? 100 : 0,
+                  rotateY: isPrevious ? 20 : isNext ? -20 : 0,
+                  filter: "blur(10px)",
+                }}
+                animate={{
+                  opacity: isActive ? 1 : 0.7,
+                  scale: isActive ? 1 : 0.9,
+                  x: isActive ? 0 : isPrevious ? -50 : 50,
+                  rotateY: isActive ? 0 : isPrevious ? 15 : -15,
+                  filter: "blur(2px)",
+                }}
+                exit={{
+                  opacity: 0,
+                  scale: 0.8,
+                  x: isPrevious ? -150 : isNext ? 150 : 0,
+                  rotateY: isPrevious ? 30 : isNext ? -30 : 0,
+                  filter: "blur(20px)",
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeInOut",
                 }}
               >
                 {/* Event Image */}
                 <div className="relative w-full h-[180px] rounded-t-3xl overflow-hidden">
-                  <img
+                  <motion.img
                     src={event.image}
                     className="w-full h-full object-cover"
                     alt="Event Image"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, ease: "easeInOut" }}
                   />
                 </div>
 
@@ -168,7 +170,7 @@ export default function EventsCarousel() {
                 <p className="mt-16 text-lg text-gray-700 px-6 leading-relaxed">
                   {event.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
         </div>
