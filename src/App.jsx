@@ -13,6 +13,7 @@ import UpcomingEventsSection from "./components/UpcomingEventsSection/UpcomingEv
 import NotFound from "./components/NotFound";
 import Footer from "./components/Footer/Footer";
 import AwardsComponent from "./components/Awards/Awards";
+import MeetTheTeamSectionCopy from "./components/Teams/MeetTheTeamSectioncopy";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
                     </section>
                     <section id="team">
                       <MeetTheTeamSection />
+                    </section>
+                    <section id="team">
+                      <MeetTheTeamSectionCopy />
                     </section>
                     <section id="UpcomingEventsSection">
                       <UpcomingEventsSection />
