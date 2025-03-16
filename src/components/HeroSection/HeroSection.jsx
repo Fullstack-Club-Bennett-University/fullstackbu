@@ -1,95 +1,53 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const HeroSection = () => {
-  
-
-  // Cloud SVG component
-  const Cloud = () => (
-    <svg
-      width="100"
-      height="50"
-      viewBox="0 0 100 50"
-      className="absolute cloud"
-      style={{ animation: 'float 15s linear infinite' }}
-    >
-      <path
-        d="M0,50 C20,40 30,20 50,30 C70,40 80,50 100,40 L100,50 Z"
-        fill="white"
-        fillOpacity="0.2"
-      />
-    </svg>
-  );
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
 
   useEffect(() => {
-    const clouds = document.querySelectorAll('.cloud');
-    clouds.forEach((cloud, index) => {
-      const delay = index * 5; // Stagger the animation start
-      cloud.style.animationDelay = `${delay}s`;
-    });
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.8) {
+        setIsNavbarVisible(false); // Hide navbar when scrolled past Hero Section
+      } else {
+        setIsNavbarVisible(true); // Show navbar inside Hero Section
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <section className="min-h-screen bg-blue-500 text-white relative overflow-hidden flex flex-col">
+    <div className="flex w-full h-screen overflow-hidden relative">
+      {/* Navbar inside Hero Section */}
+      {isNavbarVisible && (
+        <nav className="fixed top-0 left-0 w-full flex justify-end gap-x-12 p-6 text-xl text-white caveat bg-transparent z-50 transition-opacity duration-300">
+          <a href="#about" className="mx-2">About</a>
+          <a href="#team" className="mx-2">Teams</a>
+          <a href="#events" className="mx-2">Upcoming Events</a>
+          <a href="#contact" className="ml-2 mr-4">Contact</a>
+        </nav>
+      )}
 
-      {/* Main Hero Content */}
-      <div className="flex-1 flex items-center justify-center px-4 sm:px-6 py-8">
-        <div className="w-full max-w-6xl flex flex-col sm:flex-row items-center justify-between">
-          {/* Left Vertical Text */}
-          <div className="sm:w-1/5 mb-6 sm:mb-0">
-            <h1
-              className="text-4xl sm:text-5xl font-bold text-blue-800 uppercase tracking-widest transform -rotate-90 whitespace-nowrap"
-              style={{ writingMode: 'vertical-rl', textOrientation: 'mixed' }}
-            >
-              FULLSTACK
-            </h1>
-          </div>
-
-          {/* Center Text */}
-          <div className="sm:w-2/5 text-center sm:text-left mb-6 sm:mb-0">
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-extrabold text-orange-400 leading-tight">
-              CODE<br />CREATE<br />CONQUER
-            </h2>
-          </div>
-
-          {/* Right Dragon Illustration */}
-          <div className="sm:w-2/5 flex justify-center sm:justify-end">
-            <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80">
-         
-              <img
-                src="./dragon.png"
-                alt="Dragon Illustration"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          </div>
-        </div>
+      {/* Left section */}
+      <div className="hidden  w-1/4 bg-white relative sm:flex items-center justify-center">
+        <img src="/hero/fullstack.png" alt="fullstack" className="w-full h-[100vh]" />
       </div>
 
-      {/* Moving Clouds */}
-      <Cloud style={{ top: '10%', left: '-100px' }} />
-      <Cloud style={{ top: '30%', left: '-150px' }} />
-      <Cloud style={{ top: '50%', left: '-120px' }} />
+      {/* Right section */}
+      <div className="w-full sm:w-3/4 bg-[#0A84FF] relative sm:rounded-br-[45vh]">
+        {/* Cloud images */}
+        <img src="/hero/cloud1.png" alt="Cloud 1" className="absolute h-[20vh] w-[48vh] top-10 left-1" />
+        <img src="/hero/cloud2.png" alt="Cloud 2" className="absolute h-[55vh] w-[68vh] bottom-28 left-10" />
+        <img src="/hero/cloud3.png" alt="Cloud 3" className="absolute h-[20vh] w-[70vh] top-20 right-10" />
+        <img src="/hero/cloud4.png" alt="Cloud 4" className="absolute h-[15vh] w-[40vh] z-10 -bottom-4 left-96" />
 
-      {/* Animation Styles */}
-      <style jsx>{`
-        @keyframes float {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100vw);
-          }
-        }
-        .cloud {
-          position: absolute;
-          animation: float 15s linear infinite;
-        }
-        section {
-          position: relative;
-          overflow: hidden;
-        }
-      `}</style>
-    </section>
+        {/* Dragon image */}
+        <img src="/hero/dragon.png" alt="Dragon" className="absolute right-8 bottom-4 h-[70vh] w-[50vh]" />
+
+        {/* CODE CREATE CONQUER image */}
+        <img src="/hero/code.png" alt="CODE CREATE CONQUER" className=" absolute h-[30vh] w-[40vh] sm:h-[45vh] sm:w-[60vh] left-3 -bottom-40 transform -translate-y-1/2" />
+      </div>
+    </div>
   );
 };
 

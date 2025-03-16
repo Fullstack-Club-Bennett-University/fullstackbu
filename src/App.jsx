@@ -20,8 +20,8 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Navbar />
-          <main style={{ paddingTop: "70px" }}>
+          {/* <Navbar /> */}
+          <main >
             <Routes>
               {/* Main Route */}
               <Route
@@ -54,7 +54,7 @@ function App() {
                 }
               />
               {/* 404 Route */}
-              {/* <Route path="*" element={<NotFound />} /> */}
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </main>
         </div>
