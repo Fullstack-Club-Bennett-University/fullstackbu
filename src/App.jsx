@@ -20,8 +20,8 @@ function App() {
     <>
       <Router>
         <div className="App">
-          <Navbar />
-          <main style={{ paddingTop: "70px" }}>
+          {/* <Navbar /> */}
+          <main >
             <Routes>
               {/* Main Route */}
               <Route
