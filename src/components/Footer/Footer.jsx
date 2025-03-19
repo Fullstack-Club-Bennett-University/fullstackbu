@@ -59,7 +59,7 @@ const Footer = () => {
       name: "Vishu prapt",
       role: "Backend Developer",
       contribution: "API Integration & Database",
-      image: "/src/assets/vishuPratap.png",
+      image: "./VishuPratap.png",
     },
     {
       id: 6,
