@@ -177,14 +177,7 @@ const Footer = () => {
                 © {new Date().getFullYear()} FullStack Club. All rights reserved.
               </p>
             </div>
-{/*             
-            <div className="flex gap-4 text-sm text-blue-100">
-              <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-              <span>|</span>
-              <a href="/terms" className="hover:text-white transition-colors">Terms of Service</a>
-              <span>|</span>
-              <a href="/contact" className="hover:text-white transition-colors">Contact Us</a>
-            </div> */}
+
           </div>
           
           <div className="mt-4 text-center">
