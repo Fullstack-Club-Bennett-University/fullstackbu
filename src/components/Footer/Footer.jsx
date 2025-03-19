@@ -19,7 +19,7 @@ import amangangwar from "../../assets/AmanGangwar.png";
 import aarushi from "../../assets/aarushi.png";
 import shubhGupta from "../../assets/shubhGupta.png";
 import KartikGupta from "../../assets/KartikGupta.png";
-import vishuPratap from "../../assets/vishuPratap.png";
+// import vishuPratap from "../../assets/vishuPratap.png";
 import avi from "../../assets/Avi.png";
 
 const Footer = () => {
@@ -59,7 +59,7 @@ const Footer = () => {
       name: "Vishu prapt",
       role: "Backend Developer",
       contribution: "API Integration & Database",
-      image: vishuPratap,
+      image: "/src/assets/vishuPratap.png",
     },
     {
       id: 6,
@@ -258,14 +258,6 @@ const Footer = () => {
                 reserved.
               </p>
             </div>
-            {/*             
-            <div className="flex gap-4 text-sm text-blue-100">
-              <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-              <span>|</span>
-              <a href="/terms" className="hover:text-white transition-colors">Terms of Service</a>
-              <span>|</span>
-              <a href="/contact" className="hover:text-white transition-colors">Contact Us</a>
-            </div> */}
           </div>
 
           <div className="mt-4 text-center">
