@@ -34,7 +34,7 @@ const MeetTheTeamSection = () => {
       name: 'Khushgra Gupta',
       role: 'General Secretary',
       departmentId: 0,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // You can replace the image URL with the actual one later
+      image: 'https://drive.google.com/drive-viewer/AKGpihbC3Y7k4hTBpMc5G_6lCpGyG1xIRbofpGsUvPmwRzKgDlAu3S1F0lDHpPNGLwrOvbxhGY0Mnajdd8eCekGo6laWy_Ov81ZGv-c=w1920-h877-rw-v1', // You can replace the image URL with the actual one later
       bio: 'Dynamic and results-driven General Secretary with a passion for organizing and leadership.',
       additionalInfo: ['Organized 50+ successful events', 'Leader in community engagement'],
     },
@@ -72,7 +72,7 @@ const MeetTheTeamSection = () => {
       name: 'Vaibhav Kothari',
       role: 'Techinal Co-Head',
       departmentId: 3,
-      image: 'https://avatars.githubusercontent.com/u/129139486?s=400&u=2ba574b1b840c3083f52c3bc166952fdb4f38e89&v=4',
+      image: 'https://i.ibb.co/Y7Q5JYRs/Screenshot-2025-03-20-003817.png',
       bio: 'Full-stack developer with expertise in React, Node.js, and cloud technologies.',
       additionalInfo: ['Created high-performance web apps', 'Open source contributor'],
     },
@@ -127,7 +127,7 @@ const MeetTheTeamSection = () => {
       name: 'Shrijan',
       role: 'Multimedia Co-Head',
       departmentId: 7,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      image: 'https://i.ibb.co/GfdWW3Zs/20250317-203108-Shrijan-Katiyar.jpg', // Replace with actual image
       bio: 'Collaborative team player in charge of executing multimedia projects.',
       additionalInfo: ['Skilled in motion graphics', 'Expert in video direction and production'],
     },
@@ -136,26 +136,53 @@ const MeetTheTeamSection = () => {
       name: 'Ayush',
       role: 'Multimedia Member',
       departmentId: 7,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      image: '', // Replace with actual image
       bio: 'Detail-oriented multimedia artist passionate about storytelling.',
       additionalInfo: ['Specializes in animation', 'Experience with editing software like Adobe Premiere'],
     },
     // Content Team
     {
       id: 12,
-      name: 'Manasvi',
-      role: 'Content Co-Head',
+      name: 'Manasvi Khanna',
+      role: 'Content Head',
       departmentId: 2,
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400', // Replace with actual image
+      image: 'https://i.ibb.co/k62KyjyH/Screenshot-2025-03-19-235432.png', // Replace with actual image
       bio: 'Content strategist and editor with a flair for compelling storytelling.',
       additionalInfo: ['Led content for multiple high-traffic websites', 'Expert in SEO and content marketing'],
     },
     {
       id: 13,
-      name: 'Tarun',
-      role: 'Content Head',
+      name: 'Tarun Dagar',
+      role: 'Content Co-Head',
       departmentId: 2,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      image: 'https://i.ibb.co/zhdrX7j8/Tarun-Dagar.jpg', // Replace with actual image
+      bio: 'Skilled content manager with experience in creating engaging and effective content strategies.',
+      additionalInfo: ['Produced content that increased engagement by 40%', 'Specialized in long-form content'],
+    },
+    {
+      id: 13,
+      name: 'Sohil',
+      role: 'Core Member',
+      departmentId: 2,
+      image: 'https://i.ibb.co/r8FJWn1/IMG-20250317-WA0008-sohil-pathania.jpg', // Replace with actual image
+      bio: 'Skilled content manager with experience in creating engaging and effective content strategies.',
+      additionalInfo: ['Produced content that increased engagement by 40%', 'Specialized in long-form content'],
+    },
+    {
+      id: 13,
+      name: 'Khushi aftab',
+      role: 'Core Member',
+      departmentId: 2,
+      image: 'https://i.ibb.co/fGK05DFQ/Khushi-Aftab.jpg', // Replace with actual image
+      bio: 'Skilled content manager with experience in creating engaging and effective content strategies.',
+      additionalInfo: ['Produced content that increased engagement by 40%', 'Specialized in long-form content'],
+    },
+    {
+      id: 13,
+      name: 'Pranshita',
+      role: 'Core Member',
+      departmentId: 2,
+      image: 'https://i.ibb.co/gZRG2sH7/IMG-20250102-WA0437-Pranshita.jpg', // Replace with actual image
       bio: 'Skilled content manager with experience in creating engaging and effective content strategies.',
       additionalInfo: ['Produced content that increased engagement by 40%', 'Specialized in long-form content'],
     },
@@ -165,16 +192,70 @@ const MeetTheTeamSection = () => {
       name: 'Sarthak Jain',
       role: 'Management Head',
       departmentId: 5,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      image: 'https://i.ibb.co/HppN17zr/Screenshot-2025-03-20-001757.png', // Replace with actual image
       bio: 'Strategic thinker with a strong background in project management and leadership.',
       additionalInfo: ['Led organizational restructuring', 'Expert in team management and resource allocation'],
     },
     {
       id: 15,
-      name: 'Harshit',
-      role: 'Management Member',
+      name: 'Parth gupta',
+      role: 'Managment Co-head',
       departmentId: 5,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      image: 'https://i.ibb.co/0pwnZGZF/IMG-20241012-WA0468-Parth-Gupta.jpg', // Replace with actual image
+      bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
+      additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
+    },
+    {
+      id: 15,
+      name: 'Harshit',
+      role: 'Core Member',
+      departmentId: 5,
+      image: 'https://i.ibb.co/21wXY0Hp/IMG-20250218-060514-480-Harshit-Khatri.webp', // Replace with actual image
+      bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
+      additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
+    },
+    {
+      id: 15,
+      name: 'MARSHAL WALESKI ',
+      role: 'Core Member',
+      departmentId: 5,
+      image: 'https://i.ibb.co/qMH92w9m/Marshal.jpg', // Replace with actual image
+      bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
+      additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
+    },
+    {
+      id: 15,
+      name: 'Pari Sharma ',
+      role: 'Core Member',
+      departmentId: 5,
+      image: 'https://i.ibb.co/jP3dLRfr/IMG-20250312-WA0081-Palak-Aitwani.jpg', // Replace with actual image
+      bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
+      additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
+    },
+    {
+      id: 15,
+      name: 'Palak Aitwani',
+      role: 'Core Member',
+      departmentId: 5,
+      image: 'https://i.ibb.co/6cJV1dgj/IMG-2634-pari-Sharma.jpg', // Replace with actual image
+      bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
+      additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
+    },
+    {
+      id: 15,
+      name: 'Sanskar',
+      role: 'Core Member',
+      departmentId: 5,
+      image: 'https://i.ibb.co/gQTksvM/Screenshot-2025-03-20-001733.png', // Replace with actual image
+      bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
+      additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
+    },
+    {
+      id: 15,
+      name: 'Hemang Tripathi',
+      role: 'Core Member',
+      departmentId: 5,
+      image: 'https://i.ibb.co/DPJvvj9G/Screenshot-2025-03-20-002929.png', // Replace with actual image
       bio: 'Detail-oriented professional with a focus on operations and organizational growth.',
       additionalInfo: ['Improved team productivity by 30%', 'Skilled in operational analysis'],
     },
@@ -184,7 +265,52 @@ const MeetTheTeamSection = () => {
       name: 'Aeishni Yadhav',
       role: 'PR Head',
       departmentId: 6,
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400', // Replace with actual image
+      image: '', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Atisha Mehta',
+      role: 'Design Head',
+      departmentId: 4,
+      image: 'https://i.ibb.co/4wN05JHm/Whats-App-Image-2025-03-18-at-18-24-51-Atisha-Mehta.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Aarushi',
+      role: 'Design Co-Head',
+      departmentId: 4,
+      image: 'https://i.ibb.co/KcPP52GK/IMG-20241130-011550-738-Aarushi.webp', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Shubh Jadiya ',
+      role: 'Core Member',
+      departmentId: 4,
+      image: 'https://i.ibb.co/rRNGB5w1/Screenshot-20250317-190501-Gallery-Shubh-Jadiya.png', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Abhishek Ranjan',
+      role: 'Core Member',
+      departmentId: 4,
+      image: 'https://i.ibb.co/HLSmX8W2/Screenshot-2025-03-20-000655.png', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Gaurish Rana',
+      role: 'Core Member',
+      departmentId: 4,
+      image: 'https://i.ibb.co/tTbQJJHJ/Gaurish-Rana.jpg', // Replace with actual image
       bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
       additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
     },
@@ -284,6 +410,7 @@ const MeetTheTeamSection = () => {
                   <img
                     src={currentMember?.image}
                     alt={currentMember?.name}
+                    draggable="false"
                     className="w-full h-64 sm:h-80 md:h-full object-cover rounded-3xl border-4 border-white shadow-lg"
                     loading="lazy"
                   />
