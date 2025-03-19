@@ -25,45 +25,83 @@ const MeetTheTeamSection = () => {
       name: 'Aman Gangwar',
       role: 'President',
       departmentId: 0,
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400',
+      image: 'https://i.ibb.co/s9qQzx84/Screenshot-2025-03-09-014046-Aman-Gangwar-Social-Media.png',
       bio: 'Senior Team Lead with 8+ years of experience in software development and team management.',
       additionalInfo: ['Led multiple successful project deployments', 'Expert in agile methodologies'],
     },
     {
       id: 1,
       name: 'Khushgra Gupta',
-      role: 'General Secretary',
+      role: 'Secretary',
       departmentId: 0,
-      image: 'https://drive.google.com/drive-viewer/AKGpihbC3Y7k4hTBpMc5G_6lCpGyG1xIRbofpGsUvPmwRzKgDlAu3S1F0lDHpPNGLwrOvbxhGY0Mnajdd8eCekGo6laWy_Ov81ZGv-c=w1920-h877-rw-v1', // You can replace the image URL with the actual one later
+      image: 'https://i.ibb.co/LXWSnNqD/IMG-20250317-200015-Kushagra-Yadav.jpg', // You can replace the image URL with the actual one later
       bio: 'Dynamic and results-driven General Secretary with a passion for organizing and leadership.',
       additionalInfo: ['Organized 50+ successful events', 'Leader in community engagement'],
     },
     // Photography Team
     {
       id: 2,
-      name: 'Sarah Chen',
-      role: 'LEAD PHOTOGRAPHER',
+      name: 'Akshat Khemka',
+      role: 'Social Media Head',
       departmentId: 1,
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400',
+      image: 'https://i.ibb.co/TBS5V6Gf/Screenshot-2024-08-25-22-39-45-93-6012fa4d4ddec268fc5c7112cbb265e7-2-Akshat-Khemka.jpg',
       bio: 'Award-winning photographer with 10+ years of professional experience.',
       additionalInfo: ['Published in National Geographic', 'Expert in wildlife photography'],
     },
     {
       id: 3,
-      name: 'Mike Ross',
-      role: 'EVENT PHOTOGRAPHER',
+      name: 'Ananya ',
+      role: 'Social Media Co-Head',
       departmentId: 1,
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400',
+      image: 'https://i.ibb.co/nqR79Zq3/Ananya-Bala.jpg',
       bio: 'Specialized in capturing memorable moments at corporate and social events.',
       additionalInfo: ['Shot 100+ major events', 'Expert in low-light photography'],
     },
+    {
+      id: 3,
+      name: 'Utkarsh Tiwari',
+      role: 'Social Media Co-Head',
+      departmentId: 1,
+      image: 'https://i.ibb.co/C3N2WwJ6/Utkarsh-Tiwari.jpg',
+      bio: 'Specialized in capturing memorable moments at corporate and social events.',
+      additionalInfo: ['Shot 100+ major events', 'Expert in low-light photography'],
+    },
+    {
+      id: 11,
+      name: 'Ayush Swamy',
+      role: 'Core Member',
+      departmentId: 1,
+      image: 'https://i.ibb.co/1G9tBXkp/Screenshot-2025-03-17-19-12-29-82-92460851df6f172a4592fca41cc2d2e6-Ayush-Swamy.jpg', // Replace with actual image
+      bio: 'Detail-oriented multimedia artist passionate about storytelling.',
+      additionalInfo: ['Specializes in animation', 'Experience with editing software like Adobe Premiere'],
+    },
+    {
+      id: 11,
+      name: 'Sanyam Girdhar',
+      role: 'Core Member',
+      departmentId: 1,
+      image: 'https://i.ibb.co/qLMcXJj1/IMG-5493-Sanyam-Girdhar.jpg', // Replace with actual image
+      bio: 'Detail-oriented multimedia artist passionate about storytelling.',
+      additionalInfo: ['Specializes in animation', 'Experience with editing software like Adobe Premiere'],
+    },
+    {
+      id: 11,
+      name: 'Mysha Abrol ',
+      role: 'Core Member',
+      departmentId: 1,
+      image: 'https://i.ibb.co/8DCD3tCc/Mysha-Abrol.jpg', // Replace with actual image
+      bio: 'Detail-oriented multimedia artist passionate about storytelling.',
+      additionalInfo: ['Specializes in animation', 'Experience with editing software like Adobe Premiere'],
+    },
+   
+
     // Development Team
     {
       id: 4,
       name: 'Shubh Gupta',
       role: 'Techinal Head',
       departmentId: 3,
-      image: 'https://avatars.githubusercontent.com/u/138377735?v=4',
+      image: 'https://i.ibb.co/DfG6xM68/Shubh-Gupta.jpg',
       bio: 'Full-stack developer with expertise in React, Node.js, and cloud technologies.',
       additionalInfo: ['Created high-performance web apps', 'Open source contributor'],
     },
@@ -81,47 +119,47 @@ const MeetTheTeamSection = () => {
       name: 'Kartik Gupta',
       role: 'Techinal Co-Head',
       departmentId: 3,
-      image: 'https://avatars.githubusercontent.com/u/138377735?v=4',
+      image: 'https://i.ibb.co/VcSqz28N/Kartik-Gupta.jpg',
       bio: 'Full-stack developer with expertise in React, Node.js, and cloud technologies.',
       additionalInfo: ['Created high-performance web apps', 'Open source contributor'],
     },
     {
       id: 7,
       name: 'Shantanu Kumar',
-      role: 'BACKEND DEVELOPER',
+      role: 'Core Member',
       departmentId: 3,
-      image: 'https://avatars.githubusercontent.com/u/141389221?v=4',
+      image: 'https://i.ibb.co/hRHf5DBt/IMG-20241109-WA0007-shantanu-kumar.jpg',
       bio: 'Backend specialist with focus on scalable architecture and performance.',
       additionalInfo: ['Microservices architecture expert', 'Database optimization specialist'],
     },
     {
       id: 8,
       name: 'Vishu Pratap',
-      role: 'BACKEND DEVELOPER',
+      role: 'Core Member',
       departmentId: 3,
-      image: 'https://avatars.githubusercontent.com/u/144529111?v=4',
+      image: 'https://i.ibb.co/G3TJGQST/IMG-20250222-235410-940-vishu.webp',
       bio: 'Backend specialist with focus on scalable architecture and performance.',
       additionalInfo: ['Microservices architecture expert', 'Database optimization specialist'],
     },
     {
       id: 9,
       name: 'Avi Srivastava',
-      role: 'BACKEND DEVELOPER',
+      role: 'Core Member',
       departmentId: 3,
-      image: 'https://avatars.githubusercontent.com/u/141389221?v=4',
+      image: 'https://i.ibb.co/TxK72jHm/IMG-20250211-WA0000-Avi-Srivastava.jpg',
       bio: 'Backend specialist with focus on scalable architecture and performance.',
       additionalInfo: ['Microservices architecture expert', 'Database optimization specialist'],
     },
 
-    {
-      id: 9,
-      name: 'Grisha',
-      role: 'Multimedia Head',
-      departmentId: 7,
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400', // Replace with actual image
-      bio: 'Creative leader with extensive experience in multimedia production.',
-      additionalInfo: ['Led multiple multimedia campaigns', 'Expert in video and audio editing'],
-    },
+    // {
+    //   id: 9,
+    //   name: 'Grisha',
+    //   role: 'Multimedia Head',
+    //   departmentId: 7,
+    //   image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400', // Replace with actual image
+    //   bio: 'Creative leader with extensive experience in multimedia production.',
+    //   additionalInfo: ['Led multiple multimedia campaigns', 'Expert in video and audio editing'],
+    // },
     {
       id: 10,
       name: 'Shrijan',
@@ -132,13 +170,31 @@ const MeetTheTeamSection = () => {
       additionalInfo: ['Skilled in motion graphics', 'Expert in video direction and production'],
     },
     {
-      id: 11,
-      name: 'Ayush',
-      role: 'Multimedia Member',
+      id: 10,
+      name: 'Rishi Modi',
+      role: 'Core Member',
       departmentId: 7,
-      image: '', // Replace with actual image
-      bio: 'Detail-oriented multimedia artist passionate about storytelling.',
-      additionalInfo: ['Specializes in animation', 'Experience with editing software like Adobe Premiere'],
+      image: 'https://i.ibb.co/VWtrhrRs/IMG-8190-Rishi-Modi.jpg', // Replace with actual image
+      bio: 'Collaborative team player in charge of executing multimedia projects.',
+      additionalInfo: ['Skilled in motion graphics', 'Expert in video direction and production'],
+    },
+    {
+      id: 10,
+      name: 'Aatyasha Sharma',
+      role: 'Core Member',
+      departmentId: 7,
+      image: 'https://i.ibb.co/8DnP4LRv/Aatyasha-Sharma.jpg', // Replace with actual image
+      bio: 'Collaborative team player in charge of executing multimedia projects.',
+      additionalInfo: ['Skilled in motion graphics', 'Expert in video direction and production'],
+    },
+    {
+      id: 10,
+      name: 'Rudra sahu',
+      role: 'Core Member',
+      departmentId: 7,
+      image: 'https://i.ibb.co/Qv023sJ7/Rudra-Sahu.jpg', // Replace with actual image
+      bio: 'Collaborative team player in charge of executing multimedia projects.',
+      additionalInfo: ['Skilled in motion graphics', 'Expert in video direction and production'],
     },
     // Content Team
     {
@@ -262,10 +318,55 @@ const MeetTheTeamSection = () => {
     // PR Team
     {
       id: 16,
-      name: 'Aeishni Yadhav',
+      name: 'Aeshni Yadav',
       role: 'PR Head',
       departmentId: 6,
-      image: '', // Replace with actual image
+      image: 'https://i.ibb.co/yFg65S00/IMG-20250128-WA0109-Aeshni.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Suryansh Dhatwalia',
+      role: 'PR Co-Head',
+      departmentId: 6,
+      image: 'https://i.ibb.co/M5CTpdps/IMG-2429-Suryansh-Dhatwalia.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Pratham Raj',
+      role: 'Core Member',
+      departmentId: 6,
+      image: 'https://i.ibb.co/svncDqWw/Screenshot-2025-03-17-19-03-49-50-6012fa4d4ddec268fc5c7112cbb265e7-Pratham-Raj.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Janvi Pargai',
+      role: 'Core Member',
+      departmentId: 6,
+      image: 'https://i.ibb.co/99B44yw5/IMG-20250317-190641-Janvi-Pargai.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Sanjana Bhati',
+      role: 'Core Member',
+      departmentId: 6,
+      image: 'https://i.ibb.co/rRxs0C6q/IMG-4230-Sanjana-Bhati.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Shafi Khan',
+      role: 'PR Head',
+      departmentId: 6,
+      image: 'https://i.ibb.co/CK9hhMQ0/IMG-2180-11zon-Shafi.jpg', // Replace with actual image
       bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
       additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
     },
@@ -311,6 +412,33 @@ const MeetTheTeamSection = () => {
       role: 'Core Member',
       departmentId: 4,
       image: 'https://i.ibb.co/tTbQJJHJ/Gaurish-Rana.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Aditya Vardhan',
+      role: 'Research Head',
+      departmentId: 8,
+      image: 'https://i.ibb.co/7dYYbshy/pppppp-Aditya-Vardhan.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Japjeet Singh ',
+      role: 'Research Co-Head',
+      departmentId: 8,
+      image: 'https://i.ibb.co/NkGhK2K/Screenshot-20250318-182243-Photos-Japjeet-Singh.jpg', // Replace with actual image
+      bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
+      additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
+    },
+    {
+      id: 16,
+      name: 'Rahul Nagilla ',
+      role: 'Core Member',
+      departmentId: 8,
+      image: 'https://i.ibb.co/JNZRtdc/Screenshot-2025-03-20-010902.png', // Replace with actual image
       bio: 'PR professional with expertise in crafting communication strategies and managing public relations.',
       additionalInfo: ['Built strong media relationships', 'Led successful PR campaigns'],
     },
