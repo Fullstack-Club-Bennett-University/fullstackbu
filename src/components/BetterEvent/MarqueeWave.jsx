@@ -28,11 +28,15 @@ const MarqueeWave = () => {
 
   return (
     <div className="relative overflow-hidden w-full py-2">
+      {/* Enhanced gradient edges for better blend with white background */}
       <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white z-10 pointer-events-none" />
+
+      {/* Subtle bluish background glow for the marquee */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#EFF6FF] via-[#DBEAFE]/50 to-[#EFF6FF] z-0 pointer-events-none" />
 
       {/* First marquee row - left to right */}
       <motion.div
-        className="flex whitespace-nowrap"
+        className="flex whitespace-nowrap relative z-5"
         initial={{ x: "-50%" }}
         animate={{ x: "0%" }}
         transition={{
@@ -45,7 +49,7 @@ const MarqueeWave = () => {
         {marqueeItems.map((item, index) => (
           <div key={`wave-1-${index}`} className="inline-flex items-center">
             <motion.span
-              className="text-[#0A84FF] bold-text text-lg md:text-xl mx-1"
+              className="text-[#3B82F6] bold-text text-lg md:text-xl mx-1"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -70,7 +74,7 @@ const MarqueeWave = () => {
 
       {/* Second marquee row - right to left, with offset styling */}
       <motion.div
-        className="flex whitespace-nowrap mt-1"
+        className="flex whitespace-nowrap mt-1 relative z-5"
         initial={{ x: "0%" }}
         animate={{ x: "-50%" }}
         transition={{
@@ -100,7 +104,7 @@ const MarqueeWave = () => {
               }}
             >
               {item}
-              <Sparkles size={14} className="ml-1 text-[#0A84FF]" />
+              <Sparkles size={14} className="ml-1 text-[#3B82F6]" />
             </motion.span>
           </div>
         ))}

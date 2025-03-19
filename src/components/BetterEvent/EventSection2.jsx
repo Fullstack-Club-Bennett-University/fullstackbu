@@ -235,39 +235,50 @@ export default function EventsCarousel() {
     }),
   };
 
-  // Generate decorative background circles
+  // Generate decorative background circles with enhanced bluish spot gradients
   const generateCircles = (count) => {
     return Array.from({ length: count }).map((_, i) => {
-      const size = Math.random() * 180 + 50;
+      const size = Math.random() * 200 + 80; // Slightly larger for more impact
       const top = Math.random() * 100;
       const left = Math.random() * 100;
-      const opacity = Math.random() * 0.08 + 0.02;
+      const opacity = Math.random() * 0.15 + 0.05; // Slightly more visible
+
+      // Enhanced bluish gradient patterns
+      const gradientTypes = [
+        "radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(59, 130, 246, 0.02) 70%)",
+        "radial-gradient(circle, rgba(96, 165, 250, 0.15) 0%, rgba(96, 165, 250, 0.01) 70%)",
+        "radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.01) 75%)",
+        "radial-gradient(circle, rgba(147, 197, 253, 0.16) 0%, rgba(147, 197, 253, 0.01) 80%)",
+      ];
+
+      const gradient =
+        i % 4 === 0
+          ? "radial-gradient(circle, rgba(219, 234, 254, 0.25) 0%, rgba(219, 234, 254, 0.01) 70%)"
+          : gradientTypes[i % gradientTypes.length];
 
       return (
         <motion.div
           key={`circle-${i}`}
-          className="absolute rounded-full"
+          className="absolute rounded-full backdrop-blur-[80px]"
           style={{
             width: size,
             height: size,
             top: `${top}%`,
             left: `${left}%`,
-            background:
-              i % 2 === 0
-                ? "radial-gradient(circle, rgba(10, 132, 255, 0.15) 0%, rgba(10, 132, 255, 0.01) 70%)"
-                : "radial-gradient(circle, rgba(255, 120, 0, 0.1) 0%, rgba(255, 120, 0, 0.01) 70%)",
+            background: gradient,
             opacity,
+            filter: "blur(20px)",
           }}
           animate={{
             scale: [1, 1.05, 1],
             opacity: [opacity, opacity * 1.5, opacity],
           }}
           transition={{
-            duration: 3 + i,
+            duration: 4 + (i % 3),
             repeat: Infinity,
             repeatType: "reverse",
             ease: "easeInOut",
-            delay: i * 0.5,
+            delay: i * 0.3,
           }}
         />
       );
@@ -279,15 +290,34 @@ export default function EventsCarousel() {
       className="relative flex flex-col items-center py-8 md:py-16 lg:py-20 min-h-screen overflow-hidden px-4 md:px-6 lg:px-8 font-sans"
       style={{
         background: "#FFFFFF",
+        position: "relative",
       }}
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {generateCircles(8)}
+      {/* Enhanced bluish spot gradients background */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        {generateCircles(12)}
+
+        {/* Additional large fixed gradients for more atmosphere */}
+        <div
+          className="absolute top-0 left-0 w-[45vw] h-[35vh] rounded-full opacity-20 blur-[120px]"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(29, 78, 216, 0.15) 0%, rgba(29, 78, 216, 0.01) 70%)",
+            transform: "translate(-20%, -30%)",
+          }}
+        />
+        <div
+          className="absolute bottom-0 right-0 w-[50vw] h-[40vh] rounded-full opacity-20 blur-[100px]"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(96, 165, 250, 0.18) 0%, rgba(96, 165, 250, 0.01) 70%)",
+            transform: "translate(20%, 30%)",
+          }}
+        />
       </div>
 
       {/* The wavy marquee - smaller now */}
-      <div className="w-full mb-4 md:mb-6">
+      <div className="w-full mb-4 md:mb-6 relative z-10">
         <MarqueeWave />
       </div>
 
@@ -310,9 +340,9 @@ export default function EventsCarousel() {
             className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#000000] text-center"
             animate={{
               textShadow: [
-                "0 0 0px rgba(255, 120, 0, 0)",
-                "0 0 10px rgba(255, 120, 0, 0.2)",
-                "0 0 0px rgba(255, 120, 0, 0)",
+                "0 0 0px rgba(59, 130, 246, 0)",
+                "0 0 10px rgba(59, 130, 246, 0.2)",
+                "0 0 0px rgba(59, 130, 246, 0)",
               ],
             }}
             transition={{ duration: 5, repeat: Infinity }}
@@ -334,7 +364,7 @@ export default function EventsCarousel() {
 
         <div className="flex justify-center">
           <motion.div
-            className="h-1 w-24 md:w-32 bg-gradient-to-r from-[#000000] to-[#000000] rounded-full"
+            className="h-1 w-24 md:w-32 bg-gradient-to-r from-[#3B82F6] to-[#93C5FD] rounded-full"
             animate={{ width: ["24px", "100px", "24px"] }}
             transition={{
               duration: 8,
@@ -386,18 +416,18 @@ export default function EventsCarousel() {
                       filter: "brightness(0.9) contrast(1.1)",
                     }}
                     animate={{
-                      scale: [1, 1.05, 1],
-                      transition: {
-                        duration: 20,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      },
+                      scale: [1.05, 1.07, 1.05], // Subtle breathing animation
+                    }}
+                    transition={{
+                      duration: 20,
+                      repeat: Infinity,
+                      ease: "easeInOut",
                     }}
                   />
 
-                  {/* Enhanced gradient overlay */}
+                  {/* Enhanced gradient overlay with bluish tones */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-b from-[#0A84FF]/20 via-[#0A84FF]/40 to-[#0A84FF]/80"
+                    className="absolute inset-0 bg-gradient-to-b from-[#3B82F6]/20 via-[#3B82F6]/40 to-[#3B82F6]/80"
                     animate={{
                       backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
                     }}
@@ -505,7 +535,7 @@ export default function EventsCarousel() {
           </div>
         )}
 
-        {/* Main Carousel Cards - Responsive sizing */}
+        {/* Main Carousel Cards - Responsive sizing with enhanced white & blue aesthetics */}
         <div className="relative w-full xs:w-[320px] sm:w-[400px] md:w-[450px] lg:w-[480px] xl:w-[500px] h-[420px] xs:h-[450px] sm:h-[500px] md:h-[520px] lg:h-[550px] perspective">
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
@@ -515,9 +545,12 @@ export default function EventsCarousel() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="absolute w-full h-full rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-100"
+              className="absolute w-full h-full rounded-2xl overflow-hidden shadow-xl bg-white border border-[#E5E7EB]"
               style={{
                 transformStyle: "preserve-3d",
+                backdropFilter: "blur(40px)",
+                boxShadow:
+                  "0 10px 30px rgba(59, 130, 246, 0.08), 0 4px 8px rgba(59, 130, 246, 0.05)",
               }}
             >
               {/* Event Image with Refined Parallax Effect */}
@@ -570,7 +603,7 @@ export default function EventsCarousel() {
                 >
                   <div className="flex items-center mb-2">
                     <h3
-                      className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-[#0A84FF] md:mb-4"
+                      className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-[#3B82F6] md:mb-4"
                       style={{ fontFamily: "'Montserrat', sans-serif" }}
                     >
                       {events[currentIndex].title}
@@ -603,7 +636,7 @@ export default function EventsCarousel() {
 
                 {/* Animated accent line */}
                 <motion.div
-                  className="absolute left-5 sm:left-6 md:left-8 top-0 w-12 md:w-16 h-1 bg-[#FF7800] rounded-full"
+                  className="absolute left-5 sm:left-6 md:left-8 top-0 w-12 md:w-16 h-1 bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] rounded-full"
                   animate={{ width: ["12px", "60px", "12px"] }}
                   transition={{
                     duration: 6,
@@ -612,14 +645,14 @@ export default function EventsCarousel() {
                   }}
                 />
 
-                {/* Enhanced CTA Button */}
+                {/* Enhanced CTA Button with bluish tone */}
                 <motion.button
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
-                  className="mt-3 xs:mt-4 sm:mt-6 md:mt-8 px-3 py-1.5 xs:px-4 xs:py-2 md:px-6 md:py-3 bg-[#0A84FF] hover:bg-[#0A84FF]/90 text-white text-xs xs:text-sm md:text-base font-medium rounded-full flex items-center space-x-2 transform transition-all duration-300 hover:translate-x-1"
+                  className="mt-3 xs:mt-4 sm:mt-6 md:mt-8 px-3 py-1.5 xs:px-4 xs:py-2 md:px-6 md:py-3 bg-[#3B82F6] hover:bg-[#2563EB] text-white text-xs xs:text-sm md:text-base font-medium rounded-full flex items-center space-x-2 transform transition-all duration-300 hover:translate-x-1"
                   whileHover={{
-                    boxShadow: "0 0 20px rgba(10, 132, 255, 0.5)",
+                    boxShadow: "0 0 20px rgba(59, 130, 246, 0.5)",
                     scale: 1.03,
                   }}
                   whileTap={{ scale: 0.98 }}
@@ -656,25 +689,25 @@ export default function EventsCarousel() {
             <div className="absolute -bottom-14 xs:-bottom-16 left-0 right-0 flex justify-center space-x-16 xs:space-x-20 z-20">
               <motion.button
                 onClick={prevSlide}
-                className="w-10 h-10 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-white shadow-md border border-[#E5E7EB] hover:bg-[#3B82F6] flex items-center justify-center group transition-all duration-300"
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
+                  boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ArrowLeft className="h-4 w-4 text-[#0A84FF] group-hover:text-white" />
+                <ArrowLeft className="h-4 w-4 text-[#3B82F6] group-hover:text-white" />
               </motion.button>
               <motion.button
                 onClick={nextSlide}
-                className="w-10 h-10 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-white shadow-md border border-[#E5E7EB] hover:bg-[#3B82F6] flex items-center justify-center group transition-all duration-300"
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
+                  boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ArrowRight className="h-4 w-4 text-[#0A84FF] group-hover:text-white" />
+                <ArrowRight className="h-4 w-4 text-[#3B82F6] group-hover:text-white" />
               </motion.button>
             </div>
           )}
@@ -685,27 +718,27 @@ export default function EventsCarousel() {
               <div className="absolute -left-8 md:-left-12 lg:-left-16 xl:-left-20 top-1/2 transform -translate-y-1/2 z-20">
                 <motion.button
                   onClick={prevSlide}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg border border-[#E5E7EB] hover:bg-[#3B82F6] flex items-center justify-center group transition-all duration-300"
                   whileHover={{
                     scale: 1.1,
-                    boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
+                    boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)",
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 text-[#0A84FF] group-hover:text-white" />
+                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 text-[#3B82F6] group-hover:text-white" />
                 </motion.button>
               </div>
               <div className="absolute -right-8 md:-right-12 lg:-right-16 xl:-right-20 top-1/2 transform -translate-y-1/2 z-20">
                 <motion.button
                   onClick={nextSlide}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-lg border border-[#E5E7EB] hover:bg-[#3B82F6] flex items-center justify-center group transition-all duration-300"
                   whileHover={{
                     scale: 1.1,
-                    boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
+                    boxShadow: "0 0 15px rgba(59, 130, 246, 0.3)",
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-[#0A84FF] group-hover:text-white" />
+                  <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-[#3B82F6] group-hover:text-white" />
                 </motion.button>
               </div>
             </>
@@ -725,7 +758,7 @@ export default function EventsCarousel() {
                 className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(10, 132, 255, 0.8) 0%, rgba(10, 132, 255, 0.6) 100%)",
+                    "linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(96, 165, 250, 0.6) 100%)",
                   backdropFilter: "blur(10px)",
                   transformStyle: "preserve-3d",
                   transform: `rotateY(-10deg) translateZ(-30px)`,
@@ -824,7 +857,7 @@ export default function EventsCarousel() {
       </div>
 
       {/* Enhanced Dots Indicator with smoother animations */}
-      <div className="flex mt-6 xs:mt-8 md:mt-10 lg:mt-12 space-x-1.5 xs:space-x-2">
+      <div className="flex mt-6 xs:mt-8 md:mt-10 lg:mt-12 space-x-1.5 xs:space-x-2 relative z-10">
         {events.map((_, index) => (
           <motion.button
             key={index}
@@ -835,7 +868,7 @@ export default function EventsCarousel() {
             className={`relative h-2 md:h-3 rounded-full transition-all duration-500 ${
               index === currentIndex
                 ? "w-8 md:w-10 bg-[#FF7800]"
-                : "w-2 md:w-3 bg-[#0A84FF]/30"
+                : "w-2 md:w-3 bg-[#3B82F6]/30"
             }`}
             whileHover={{
               scale: 1.2,
@@ -860,7 +893,7 @@ export default function EventsCarousel() {
 
       {/* Enhanced Event Counter */}
       <motion.div
-        className="mt-4 md:mt-6 lg:mt-8 text-[#0A84FF]/70 text-sm md:text-base font-medium"
+        className="mt-4 md:mt-6 lg:mt-8 text-[#3B82F6]/70 text-sm md:text-base font-medium relative z-10"
         animate={{ opacity: [0.7, 1, 0.7] }}
         transition={{ duration: 3, repeat: Infinity }}
         style={{ fontFamily: "'Montserrat', sans-serif" }}
