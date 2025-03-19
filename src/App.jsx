@@ -41,9 +41,9 @@ function App() {
                     <section id="UpcomingEventsSection">
                       <UpcomingEventsSection />
                     </section>
-                    <section id="event">
+                    {/* <section id="event">
                       <EventsSection />
-                    </section>
+                    </section> */}
                     <section id="event">
                       <EventsCarousel2 />
                     </section>

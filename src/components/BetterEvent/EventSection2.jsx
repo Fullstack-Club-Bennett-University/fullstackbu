@@ -287,9 +287,9 @@ export default function EventsCarousel() {
 
   return (
     <div
-      className="relative flex flex-col items-center py-8 md:py-16 lg:py-20 min-h-screen overflow-hidden px-4 md:px-6 lg:px-8 font-sans"
+      className="relative flex flex-col items-center py-1 md:py-1 lg:py-1 min-h-screen overflow-hidden px-4 md:px-6 lg:px-8 font-sans"
       style={{
-        background: "#FFFFFF",
+        background: "#ffffff",
         position: "relative",
       }}
     >
@@ -328,7 +328,7 @@ export default function EventsCarousel() {
         transition={{ duration: 1, ease: "easeOut" }}
         className="relative z-10 mb-6 md:mb-10 lg:mb-14"
       >
-        <div className="flex items-center justify-center mb-2">
+        <div className="flex items-center justify-center mb-2 mt-6">
           <motion.div
             animate={{ rotate: 360 }}
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}

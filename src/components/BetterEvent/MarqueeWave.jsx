@@ -32,7 +32,7 @@ const MarqueeWave = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white z-10 pointer-events-none" />
 
       {/* Subtle bluish background glow for the marquee */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#EFF6FF] via-[#DBEAFE]/50 to-[#EFF6FF] z-0 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#ffffff] via-[#DBEAFE]/50 to-[#EFF6FF] z-0 pointer-events-none" />
 
       {/* First marquee row - left to right */}
       <motion.div
