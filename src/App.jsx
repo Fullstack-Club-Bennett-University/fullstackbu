@@ -41,6 +41,9 @@ function App() {
                 element={
                   <>
                     <HeroSection />
+                    <section id="UpcomingEventsSection">
+                      <UpcomingEventsSection />
+                    </section>
                     <section id="event">
                       <EventsSection />
                     </section>
@@ -53,9 +56,7 @@ function App() {
                     {/* <section id="team">
                       <MeetTheTeamSectionCopy />
                     </section> */}
-                    <section id="UpcomingEventsSection">
-                      <UpcomingEventsSection />
-                    </section>
+                   
                     <section>
                       <AwardsComponent />
                     </section>
