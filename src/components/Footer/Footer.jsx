@@ -16,11 +16,11 @@ const Footer = () => {
 
   // FullStack Club social media links with icons
   const socialLinks = [
-    { name: 'LinkedIn', url: 'https://linkedin.com/company/fullstack-club', icon: <LinkedinIcon className="w-5 h-5" /> },
-    { name: 'Twitter', url: 'https://twitter.com/fullstackclub', icon: <TwitterIcon className="w-5 h-5" /> },
-    { name: 'Instagram', url: 'https://instagram.com/fullstackclub', icon: <InstagramIcon className="w-5 h-5" /> },
-    { name: 'GitHub', url: 'https://github.com/fullstack-club', icon: <GithubIcon className="w-5 h-5" /> },
-    { name: 'YouTube', url: 'https://youtube.com/c/fullstackclub', icon: <YoutubeIcon className="w-5 h-5" /> },
+    { name: 'LinkedIn', url: 'https://www.linkedin.com/company/fullstackbu/', icon: <LinkedinIcon className="w-5 h-5" /> },
+    // { name: 'Twitter', url: 'https://twitter.com/fullstackclub', icon: <TwitterIcon className="w-5 h-5" /> },
+    { name: 'Instagram', url: 'https://instagram.com/fullstackbu', icon: <InstagramIcon className="w-5 h-5" /> },
+    { name: 'GitHub', url: 'http://github.com/Fullstack-Club-Bennett-University/', icon: <GithubIcon className="w-5 h-5" /> },
+    { name: 'YouTube', url: 'https://www.youtube.com/@fullstackbu', icon: <YoutubeIcon className="w-5 h-5" /> },
     // { name: 'Discord', url: 'https://discord.gg/fullstackclub', icon: <DiscordIcon className="w-5 h-5" /> },
   ];
 
