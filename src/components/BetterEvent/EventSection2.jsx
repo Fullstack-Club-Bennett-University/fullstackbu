@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, Sparkles, Star } from "lucide-react";
+import MarqueeWave from "./MarqueeWave";
 
 const events = [
   {
@@ -113,12 +114,12 @@ export default function EventsCarousel() {
   const handleMouseLeave = () => setIsAutoPlaying(true);
 
   const nextSlide = () => {
-    setDirection("left"); // Changed from "right" to "left"
+    setDirection("left");
     setCurrentIndex((prevIndex) => (prevIndex + 1) % events.length);
   };
 
   const prevSlide = () => {
-    setDirection("right"); // Changed from "left" to "right"
+    setDirection("right");
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? events.length - 1 : prevIndex - 1
     );
@@ -127,10 +128,10 @@ export default function EventsCarousel() {
   // Refined variants for main card animations with gentler transitions
   const cardVariants = {
     enter: (direction) => ({
-      x: direction === "right" ? 200 : -200, // Reduced distance
+      x: direction === "right" ? 200 : -200,
       opacity: 0,
-      scale: 0.9, // Less scaling
-      rotateY: direction === "right" ? -10 : 10, // Reduced rotation
+      scale: 0.9,
+      rotateY: direction === "right" ? -10 : 10,
       zIndex: 1,
     }),
     center: {
@@ -140,20 +141,20 @@ export default function EventsCarousel() {
       rotateY: 0,
       zIndex: 10,
       transition: {
-        x: { type: "spring", stiffness: 200, damping: 25 }, // Softer spring
-        opacity: { duration: 0.7 }, // Longer fade
+        x: { type: "spring", stiffness: 200, damping: 25 },
+        opacity: { duration: 0.7 },
         scale: { duration: 0.7 },
         rotateY: { duration: 0.7 },
       },
     },
     exit: (direction) => ({
-      x: direction === "right" ? -200 : 200, // Reduced distance
+      x: direction === "right" ? -200 : 200,
       opacity: 0,
-      scale: 0.9, // Less scaling
-      rotateY: direction === "right" ? 10 : -10, // Reduced rotation
+      scale: 0.9,
+      rotateY: direction === "right" ? 10 : -10,
       zIndex: 1,
       transition: {
-        x: { type: "spring", stiffness: 200, damping: 25 }, // Softer spring
+        x: { type: "spring", stiffness: 200, damping: 25 },
         opacity: { duration: 0.5 },
         scale: { duration: 0.5 },
         rotateY: { duration: 0.5 },
@@ -163,18 +164,18 @@ export default function EventsCarousel() {
 
   // Refined left card variants with smoother transitions
   const leftCardVariants = {
-    initial: { opacity: 0, scale: 1.05, y: 10 }, // Added y offset
+    initial: { opacity: 0, scale: 1.05, y: 10 },
     animate: {
       opacity: 1,
       scale: 1,
       y: 0,
-      transition: { duration: 1, ease: "easeOut" }, // Longer duration
+      transition: { duration: 1, ease: "easeOut" },
     },
     exit: {
       opacity: 0,
       scale: 0.95,
       y: -10,
-      transition: { duration: 0.6, ease: "easeIn" }, // Smoother exit
+      transition: { duration: 0.6, ease: "easeIn" },
     },
   };
 
@@ -194,7 +195,7 @@ export default function EventsCarousel() {
       transition: {
         duration: 0.8,
         ease: "easeOut",
-        delay: 0.2, // Slight delay after main card appears
+        delay: 0.2,
       },
     },
     exit: {
@@ -234,125 +235,118 @@ export default function EventsCarousel() {
     }),
   };
 
-  return (
-    <div
-      className="relative flex flex-col items-center py-8 md:py-16 lg:py-20 min-h-screen overflow-hidden px-4 md:px-6 lg:px-8"
-      style={{
-        background:
-          "linear-gradient(135deg, #0c1445 0%, #1e3a8a 50%, #0c1445 100%)",
-      }}
-    >
-      {/* Enhanced sophisticated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Elegant radial gradient that slowly pulses */}
+  // Generate decorative background circles
+  const generateCircles = (count) => {
+    return Array.from({ length: count }).map((_, i) => {
+      const size = Math.random() * 180 + 50;
+      const top = Math.random() * 100;
+      const left = Math.random() * 100;
+      const opacity = Math.random() * 0.08 + 0.02;
+
+      return (
         <motion.div
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full"
+          key={`circle-${i}`}
+          className="absolute rounded-full"
+          style={{
+            width: size,
+            height: size,
+            top: `${top}%`,
+            left: `${left}%`,
+            background:
+              i % 2 === 0
+                ? "radial-gradient(circle, rgba(10, 132, 255, 0.15) 0%, rgba(10, 132, 255, 0.01) 70%)"
+                : "radial-gradient(circle, rgba(255, 120, 0, 0.1) 0%, rgba(255, 120, 0, 0.01) 70%)",
+            opacity,
+          }}
           animate={{
-            opacity: [0.4, 0.6, 0.4],
+            scale: [1, 1.05, 1],
+            opacity: [opacity, opacity * 1.5, opacity],
           }}
           transition={{
-            duration: 12,
-            repeat: Number.POSITIVE_INFINITY,
+            duration: 3 + i,
+            repeat: Infinity,
+            repeatType: "reverse",
             ease: "easeInOut",
-          }}
-        >
-          <div
-            className="w-full h-full rounded-full blur-3xl"
-            style={{
-              background:
-                "radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, rgba(30, 58, 138, 0.1) 40%, rgba(12, 20, 69, 0.05) 70%)",
-            }}
-          />
-        </motion.div>
-
-        {/* Subtle grid overlay with slight animation - disabled on mobile for performance */}
-        {!isMobile && (
-          <motion.div
-            className="absolute inset-0 opacity-10"
-            animate={{
-              backgroundPosition: ["0% 0%", "100% 100%"],
-            }}
-            transition={{
-              duration: 120,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
-              backgroundSize: "80px 80px",
-            }}
-          />
-        )}
-
-        {/* Premium diagonal light beams that slowly move - reduced on mobile */}
-        <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: isMobile ? 1 : 3 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute opacity-10 bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent"
-              style={{
-                height: "150%",
-                width: isMobile ? "60px" : "100px",
-                top: "-25%",
-                left: `${i * 25}%`,
-                transform: "rotate(35deg) translateX(-50%)",
-              }}
-              animate={{
-                left: [`${i * 25}%`, `${i * 25 + 100}%`],
-              }}
-              transition={{
-                duration: 25 + i * 10,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-                delay: i * 8,
-              }}
-            />
-          ))}
-        </div>
-
-        {/* Subtle vignette effect around the edges */}
-        <div
-          className="absolute inset-0 opacity-70"
-          style={{
-            background:
-              "radial-gradient(circle at center, transparent 30%, rgba(12, 20, 69, 0.4) 100%)",
+            delay: i * 0.5,
           }}
         />
+      );
+    });
+  };
+
+  return (
+    <div
+      className="relative flex flex-col items-center py-8 md:py-16 lg:py-20 min-h-screen overflow-hidden px-4 md:px-6 lg:px-8 font-sans"
+      style={{
+        background: "#FFFFFF",
+      }}
+    >
+      {/* Background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {generateCircles(8)}
       </div>
 
-      {/* Enhanced Title Section with subtle animation */}
+      {/* The wavy marquee - smaller now */}
+      <div className="w-full mb-4 md:mb-6">
+        <MarqueeWave />
+      </div>
+
+      {/* Enhanced Title Section with subtle animation and stars */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "easeOut" }}
-        className="relative z-10 mb-8 md:mb-12 lg:mb-16"
+        className="relative z-10 mb-6 md:mb-10 lg:mb-14"
       >
-        <motion.h2
-          className="text-2xl md:text-4xl lg:text-5xl font-bold text-white text-center mb-2"
-          animate={{
-            textShadow: [
-              "0 0 0px rgba(251, 191, 36, 0)",
-              "0 0 10px rgba(251, 191, 36, 0.3)",
-              "0 0 0px rgba(251, 191, 36, 0)",
-            ],
-          }}
-          transition={{ duration: 5, repeat: Number.POSITIVE_INFINITY }}
-        >
-          SIGNATURE <span className="text-amber-400">EVENTS</span>
-        </motion.h2>
+        <div className="flex items-center justify-center mb-2">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="mr-3"
+          >
+            <Star className="w-5 h-5 md:w-6 md:h-6 text-[#FF7800] fill-[#FF7800]" />
+          </motion.div>
+          <motion.h2
+            className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#0A84FF] text-center"
+            animate={{
+              textShadow: [
+                "0 0 0px rgba(255, 120, 0, 0)",
+                "0 0 10px rgba(255, 120, 0, 0.2)",
+                "0 0 0px rgba(255, 120, 0, 0)",
+              ],
+            }}
+            transition={{ duration: 5, repeat: Infinity }}
+            style={{
+              fontFamily: "'Montserrat', sans-serif",
+              letterSpacing: "0.05em",
+            }}
+          >
+            SIGNATURE <span className="text-[#FF7800]">EVENTS</span>
+          </motion.h2>
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+            className="ml-3"
+          >
+            <Star className="w-5 h-5 md:w-6 md:h-6 text-[#0A84FF] fill-[#0A84FF]" />
+          </motion.div>
+        </div>
+
         <div className="flex justify-center">
           <motion.div
-            className="h-1 w-24 md:w-32 bg-gradient-to-r from-amber-400 to-amber-600 rounded-full"
+            className="h-1 w-24 md:w-32 bg-gradient-to-r from-[#0A84FF] to-[#FF7800] rounded-full"
             animate={{ width: ["24px", "100px", "24px"] }}
             transition={{
               duration: 8,
-              repeat: Number.POSITIVE_INFINITY,
+              repeat: Infinity,
               ease: "easeInOut",
             }}
           />
         </div>
-        <p className="text-base md:text-lg lg:text-xl text-blue-100 text-center mt-4 max-w-xs md:max-w-lg lg:max-w-2xl mx-auto px-4">
+        <p
+          className="text-base md:text-lg lg:text-xl text-[#0A84FF]/70 text-center mt-4 max-w-xs md:max-w-lg lg:max-w-2xl mx-auto px-4"
+          style={{ fontFamily: "'Poppins', sans-serif" }}
+        >
           Experience our most prestigious gatherings and transformative programs
         </p>
       </motion.div>
@@ -380,53 +374,53 @@ export default function EventsCarousel() {
                 }}
               >
                 <motion.div
-                  className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl"
+                  className="relative w-full h-full rounded-2xl overflow-hidden shadow-xl"
                   whileHover={{ y: -5, transition: { duration: 0.3 } }}
                 >
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-indigo-900/90"
+                    className="absolute inset-0"
                     style={{
                       backgroundImage: `url(${events[currentIndex].leftCard})`,
                       backgroundSize: "cover",
                       backgroundPosition: "center",
-                      filter: "brightness(0.7) contrast(1.2)",
+                      filter: "brightness(0.9) contrast(1.1)",
                     }}
                     animate={{
                       scale: [1, 1.05, 1],
                       transition: {
                         duration: 20,
-                        repeat: Number.POSITIVE_INFINITY,
+                        repeat: Infinity,
                         ease: "easeInOut",
                       },
                     }}
                   />
 
-                  {/* Enhanced luxurious overlay with subtle animation */}
+                  {/* Enhanced gradient overlay */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-900/50 to-indigo-900/90"
+                    className="absolute inset-0 bg-gradient-to-b from-[#0A84FF]/20 via-[#0A84FF]/40 to-[#0A84FF]/80"
                     animate={{
                       backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
                     }}
                     transition={{
                       duration: 15,
-                      repeat: Number.POSITIVE_INFINITY,
+                      repeat: Infinity,
                       ease: "easeInOut",
                     }}
                   />
 
-                  {/* Animated gold accents */}
+                  {/* Animated accents */}
                   <motion.div
-                    className="absolute top-6 left-6 right-6 bottom-6 border border-amber-400/30 rounded-xl"
+                    className="absolute top-6 left-6 right-6 bottom-6 border border-[#FF7800]/30 rounded-xl"
                     animate={{
                       boxShadow: [
-                        "0 0 0px rgba(251, 191, 36, 0)",
-                        "0 0 8px rgba(251, 191, 36, 0.3)",
-                        "0 0 0px rgba(251, 191, 36, 0)",
+                        "0 0 0px rgba(255, 120, 0, 0)",
+                        "0 0 8px rgba(255, 120, 0, 0.3)",
+                        "0 0 0px rgba(255, 120, 0, 0)",
                       ],
                     }}
                     transition={{
                       duration: 4,
-                      repeat: Number.POSITIVE_INFINITY,
+                      repeat: Infinity,
                     }}
                   />
 
@@ -437,27 +431,37 @@ export default function EventsCarousel() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.8, delay: 0.3 }}
                     >
-                      <motion.h3
-                        className="text-amber-400 text-lg font-medium mb-2"
-                        animate={{
-                          textShadow: "0 0 8px rgba(251, 191, 36, 0.5)",
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Number.POSITIVE_INFINITY,
-                          repeatType: "reverse",
-                        }}
+                      <div className="flex items-center mb-2">
+                        <Sparkles className="mr-2 text-[#FF7800]" size={16} />
+                        <motion.h3
+                          className="text-[#FF7800] text-lg font-medium"
+                          animate={{
+                            textShadow: "0 0 8px rgba(255, 120, 0, 0.5)",
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            repeatType: "reverse",
+                          }}
+                          style={{ fontFamily: "'Montserrat', sans-serif" }}
+                        >
+                          PREVIOUS EVENT
+                        </motion.h3>
+                      </div>
+                      <h4
+                        className="text-white text-2xl font-bold mb-3"
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
                       >
-                        PREVIOUS EVENT
-                      </motion.h3>
-                      <h4 className="text-white text-2xl font-bold mb-3">
                         {
                           events[
                             (currentIndex - 1 + events.length) % events.length
                           ].title
                         }
                       </h4>
-                      <p className="text-blue-100 text-sm opacity-80">
+                      <p
+                        className="text-white/80 text-sm opacity-80"
+                        style={{ fontFamily: "'Poppins', sans-serif" }}
+                      >
                         {
                           events[
                             (currentIndex - 1 + events.length) % events.length
@@ -467,6 +471,22 @@ export default function EventsCarousel() {
                     </motion.div>
                   </div>
 
+                  {/* Enhanced floating elements */}
+                  <motion.div
+                    className="absolute top-6 right-6"
+                    animate={{
+                      y: [0, -10, 0],
+                      rotate: [0, 5, 0],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <Sparkles className="text-[#FF7800]" size={18} />
+                  </motion.div>
+
                   {/* Enhanced shine effect - more subtle and repeating */}
                   <motion.div
                     className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
@@ -475,7 +495,7 @@ export default function EventsCarousel() {
                     transition={{
                       duration: 3,
                       ease: "easeInOut",
-                      repeat: Number.POSITIVE_INFINITY,
+                      repeat: Infinity,
                       repeatDelay: 7,
                     }}
                   />
@@ -495,14 +515,14 @@ export default function EventsCarousel() {
               initial="enter"
               animate="center"
               exit="exit"
-              className="absolute w-full h-full rounded-2xl overflow-hidden shadow-2xl bg-white"
+              className="absolute w-full h-full rounded-2xl overflow-hidden shadow-xl bg-white border border-gray-100"
               style={{
                 transformStyle: "preserve-3d",
               }}
             >
               {/* Event Image with Refined Parallax Effect */}
               <div className="relative w-full h-[160px] xs:h-[180px] sm:h-[200px] md:h-[220px] lg:h-[250px] overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/0 z-5" />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/30 to-black/0 z-5" />
                 <motion.img
                   src={events[currentIndex].image}
                   alt={events[currentIndex].title}
@@ -517,22 +537,25 @@ export default function EventsCarousel() {
                   }}
                   transition={{
                     duration: 8,
-                    repeat: Number.POSITIVE_INFINITY,
+                    repeat: Infinity,
                     ease: "easeInOut",
                   }}
                 />
                 <motion.div
-                  className="absolute top-0 right-0 m-4 md:m-6 px-3 py-1 md:px-4 md:py-2 bg-amber-400 rounded-full z-10"
+                  className="absolute top-0 right-0 m-4 md:m-6 px-3 py-1 md:px-4 md:py-2 bg-[#FF7800] rounded-full z-10"
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                   whileHover={{
                     scale: 1.05,
-                    boxShadow: "0 0 15px rgba(251, 191, 36, 0.5)",
+                    boxShadow: "0 0 15px rgba(255, 120, 0, 0.5)",
                     transition: { duration: 0.3 },
                   }}
                 >
-                  <p className="text-indigo-900 font-semibold text-xs md:text-sm">
+                  <p
+                    className="text-white font-semibold text-xs md:text-sm"
+                    style={{ fontFamily: "'Montserrat', sans-serif" }}
+                  >
                     {events[currentIndex].date}
                   </p>
                 </motion.div>
@@ -545,26 +568,46 @@ export default function EventsCarousel() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
-                  <h3 className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-indigo-900 mb-2 md:mb-4">
-                    {events[currentIndex].title}
-                  </h3>
+                  <div className="flex items-center mb-2">
+                    <h3
+                      className="text-lg xs:text-xl sm:text-2xl md:text-3xl font-bold text-[#0A84FF] md:mb-4"
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      {events[currentIndex].title}
+                    </h3>
+                    <motion.div
+                      animate={{
+                        rotate: [0, 5, -5, 0],
+                        scale: [1, 1.1, 1],
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="ml-2"
+                    >
+                      <Sparkles className="text-[#FF7800]" size={18} />
+                    </motion.div>
+                  </div>
                   <motion.p
                     className="text-xs xs:text-sm md:text-base text-gray-700 leading-relaxed line-clamp-4 sm:line-clamp-5 md:line-clamp-none"
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.7 }}
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
                   >
                     {events[currentIndex].description}
                   </motion.p>
                 </motion.div>
 
-                {/* Animated gold accent line */}
+                {/* Animated accent line */}
                 <motion.div
-                  className="absolute left-5 sm:left-6 md:left-8 top-0 w-12 md:w-16 h-1 bg-amber-400 rounded-full"
+                  className="absolute left-5 sm:left-6 md:left-8 top-0 w-12 md:w-16 h-1 bg-[#FF7800] rounded-full"
                   animate={{ width: ["12px", "60px", "12px"] }}
                   transition={{
                     duration: 6,
-                    repeat: Number.POSITIVE_INFINITY,
+                    repeat: Infinity,
                     ease: "easeInOut",
                   }}
                 />
@@ -574,12 +617,13 @@ export default function EventsCarousel() {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8 }}
-                  className="mt-3 xs:mt-4 sm:mt-6 md:mt-8 px-3 py-1.5 xs:px-4 xs:py-2 md:px-6 md:py-3 bg-indigo-800 hover:bg-indigo-700 text-white text-xs xs:text-sm md:text-base font-medium rounded-full flex items-center space-x-2 transform transition-all duration-300 hover:translate-x-1"
+                  className="mt-3 xs:mt-4 sm:mt-6 md:mt-8 px-3 py-1.5 xs:px-4 xs:py-2 md:px-6 md:py-3 bg-[#0A84FF] hover:bg-[#0A84FF]/90 text-white text-xs xs:text-sm md:text-base font-medium rounded-full flex items-center space-x-2 transform transition-all duration-300 hover:translate-x-1"
                   whileHover={{
-                    boxShadow: "0 0 20px rgba(79, 70, 229, 0.5)",
+                    boxShadow: "0 0 20px rgba(10, 132, 255, 0.5)",
                     scale: 1.03,
                   }}
                   whileTap={{ scale: 0.98 }}
+                  style={{ fontFamily: "'Montserrat', sans-serif" }}
                 >
                   <span>Learn More</span>
                   <motion.svg
@@ -591,7 +635,7 @@ export default function EventsCarousel() {
                     animate={{ x: [0, 5, 0] }}
                     transition={{
                       duration: 1.5,
-                      repeat: Number.POSITIVE_INFINITY,
+                      repeat: Infinity,
                       repeatDelay: 3,
                     }}
                     className="md:w-4 md:h-4"
@@ -612,25 +656,25 @@ export default function EventsCarousel() {
             <div className="absolute -bottom-14 xs:-bottom-16 left-0 right-0 flex justify-center space-x-16 xs:space-x-20 z-20">
               <motion.button
                 onClick={prevSlide}
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-indigo-800/80 flex items-center justify-center group transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)",
+                  boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ArrowLeft className="h-4 w-4 text-white group-hover:text-amber-400" />
+                <ArrowLeft className="h-4 w-4 text-[#0A84FF] group-hover:text-white" />
               </motion.button>
               <motion.button
                 onClick={nextSlide}
-                className="w-10 h-10 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-indigo-800/80 flex items-center justify-center group transition-all duration-300"
+                className="w-10 h-10 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
                 whileHover={{
                   scale: 1.1,
-                  boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)",
+                  boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
                 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <ArrowRight className="h-4 w-4 text-white group-hover:text-amber-400" />
+                <ArrowRight className="h-4 w-4 text-[#0A84FF] group-hover:text-white" />
               </motion.button>
             </div>
           )}
@@ -641,27 +685,27 @@ export default function EventsCarousel() {
               <div className="absolute -left-8 md:-left-12 lg:-left-16 xl:-left-20 top-1/2 transform -translate-y-1/2 z-20">
                 <motion.button
                   onClick={prevSlide}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-indigo-800/80 flex items-center justify-center group transition-all duration-300"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
                   whileHover={{
                     scale: 1.1,
-                    boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)",
+                    boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 text-white group-hover:text-amber-400" />
+                  <ArrowLeft className="h-4 w-4 md:h-5 md:w-5 text-[#0A84FF] group-hover:text-white" />
                 </motion.button>
               </div>
               <div className="absolute -right-8 md:-right-12 lg:-right-16 xl:-right-20 top-1/2 transform -translate-y-1/2 z-20">
                 <motion.button
                   onClick={nextSlide}
-                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-indigo-800/80 flex items-center justify-center group transition-all duration-300"
+                  className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white shadow-md border border-gray-100 hover:bg-[#0A84FF] flex items-center justify-center group transition-all duration-300"
                   whileHover={{
                     scale: 1.1,
-                    boxShadow: "0 0 15px rgba(255, 255, 255, 0.2)",
+                    boxShadow: "0 0 15px rgba(10, 132, 255, 0.3)",
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-white group-hover:text-amber-400" />
+                  <ArrowRight className="h-4 w-4 md:h-5 md:w-5 text-[#0A84FF] group-hover:text-white" />
                 </motion.button>
               </div>
             </>
@@ -678,17 +722,17 @@ export default function EventsCarousel() {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl"
+                className="absolute inset-0 rounded-2xl overflow-hidden shadow-lg"
                 style={{
                   background:
-                    "linear-gradient(135deg, rgba(30, 58, 138, 0.8) 0%, rgba(79, 70, 229, 0.6) 100%)",
+                    "linear-gradient(135deg, rgba(10, 132, 255, 0.8) 0%, rgba(10, 132, 255, 0.6) 100%)",
                   backdropFilter: "blur(10px)",
                   transformStyle: "preserve-3d",
                   transform: `rotateY(-10deg) translateZ(-30px)`,
                 }}
                 whileHover={{
                   y: -5,
-                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.3)",
+                  boxShadow: "0 10px 25px rgba(0, 0, 0, 0.15)",
                   transition: { duration: 0.3 },
                 }}
               >
@@ -702,41 +746,63 @@ export default function EventsCarousel() {
                     }}
                     transition={{
                       duration: 10,
-                      repeat: Number.POSITIVE_INFINITY,
+                      repeat: Infinity,
                       ease: "easeInOut",
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-black/40 to-black/0" />
                 </div>
                 <div className="p-4 lg:p-5">
-                  <motion.h3
-                    className="text-amber-300 text-sm font-medium mb-1"
-                    animate={{ textShadow: "0 0 5px rgba(251, 191, 36, 0.5)" }}
-                    transition={{
-                      duration: 2,
-                      repeat: Number.POSITIVE_INFINITY,
-                      repeatType: "reverse",
-                    }}
-                  >
-                    UP NEXT
-                  </motion.h3>
+                  <div className="flex items-center mb-1">
+                    <Star className="w-3 h-3 mr-1 text-[#FF7800] fill-[#FF7800]" />
+                    <motion.h3
+                      className="text-[#FF7800] text-sm font-medium"
+                      animate={{ textShadow: "0 0 5px rgba(255, 120, 0, 0.5)" }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                      }}
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      UP NEXT
+                    </motion.h3>
+                  </div>
                   <motion.h4
                     className="text-white text-base lg:text-lg font-bold mb-2"
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.3 }}
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
                   >
                     {events[(currentIndex + 1) % events.length].title}
                   </motion.h4>
                   <motion.p
-                    className="text-blue-100 text-xs"
+                    className="text-white/80 text-xs"
                     initial={{ opacity: 0, x: 10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: 0.4 }}
+                    style={{ fontFamily: "'Poppins', sans-serif" }}
                   >
                     {events[(currentIndex + 1) % events.length].date}
                   </motion.p>
                 </div>
+
+                {/* Floating elements */}
+                <motion.div
+                  className="absolute bottom-4 right-4"
+                  animate={{
+                    y: [0, -8, 0],
+                    rotate: [0, 10, 0],
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <Sparkles className="text-[#FF7800]" size={16} />
+                </motion.div>
 
                 {/* Shine effect for the upcoming card */}
                 <motion.div
@@ -747,7 +813,7 @@ export default function EventsCarousel() {
                     duration: 2.5,
                     ease: "easeInOut",
                     delay: 1,
-                    repeat: Number.POSITIVE_INFINITY,
+                    repeat: Infinity,
                     repeatDelay: 8,
                   }}
                 />
@@ -768,22 +834,22 @@ export default function EventsCarousel() {
             }}
             className={`relative h-2 md:h-3 rounded-full transition-all duration-500 ${
               index === currentIndex
-                ? "w-8 md:w-10 bg-amber-400"
-                : "w-2 md:w-3 bg-white/30"
+                ? "w-8 md:w-10 bg-[#FF7800]"
+                : "w-2 md:w-3 bg-[#0A84FF]/30"
             }`}
             whileHover={{
               scale: 1.2,
-              boxShadow: "0 0 10px rgba(251, 191, 36, 0.5)",
+              boxShadow: "0 0 10px rgba(255, 120, 0, 0.5)",
             }}
             whileTap={{ scale: 0.9 }}
           >
             {index === currentIndex && (
               <motion.div
-                className="absolute inset-0 rounded-full bg-amber-400 opacity-50"
+                className="absolute inset-0 rounded-full bg-[#FF7800] opacity-50"
                 animate={{ scale: [1, 1.3, 1] }}
                 transition={{
                   duration: 2.5,
-                  repeat: Number.POSITIVE_INFINITY,
+                  repeat: Infinity,
                   ease: "easeInOut",
                 }}
               />
@@ -794,11 +860,12 @@ export default function EventsCarousel() {
 
       {/* Enhanced Event Counter */}
       <motion.div
-        className="mt-4 md:mt-6 lg:mt-8 text-white/70 text-sm md:text-base font-medium"
+        className="mt-4 md:mt-6 lg:mt-8 text-[#0A84FF]/70 text-sm md:text-base font-medium"
         animate={{ opacity: [0.7, 1, 0.7] }}
-        transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+        transition={{ duration: 3, repeat: Infinity }}
+        style={{ fontFamily: "'Montserrat', sans-serif" }}
       >
-        <span className="text-amber-400 font-bold">{currentIndex + 1}</span>
+        <span className="text-[#FF7800] font-bold">{currentIndex + 1}</span>
         <span> / {events.length}</span>
       </motion.div>
     </div>

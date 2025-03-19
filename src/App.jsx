@@ -15,10 +15,25 @@ import MeetTheTeamSectionCopy from "./components/Teams/MeetTheTeamSectioncopy";
 function App() {
   return (
     <>
+      {/* Google Fonts for Montserrat, Poppins and Rufina */}
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossOrigin="true"
+      />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&family=Rufina:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
+
+      <div className="min-h-screen w-full bg-white">
+        <EventsCarousel />
+      </div>
       <Router>
         <div className="App">
           {/* <Navbar /> */}
-          <main >
+          <main>
             <Routes>
               {/* Main Route */}
               <Route
@@ -29,9 +44,9 @@ function App() {
                     <section id="event">
                       <EventsSection />
                     </section>
-                    {/* <section id="event">
+                    <section id="event">
                       <EventsCarousel2 />
-                    </section> */}
+                    </section>
                     <section id="team">
                       <MeetTheTeamSection />
                     </section>
