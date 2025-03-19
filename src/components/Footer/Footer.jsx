@@ -247,30 +247,6 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          {/* Newsletter */}
-          {/* <div className="bg-white bg-opacity-5 rounded-xl p-6 backdrop-blur-sm border border-white border-opacity-10">
-            <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <MailIcon className="w-5 h-5" />
-              Join Our Newsletter
-            </h3>
-            <p className="text-blue-100 mb-4">Stay updated with the latest resources, events, and opportunities.</p>
-            <form className="flex flex-col sm:flex-row gap-2">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
-                className="px-4 py-3 rounded-md bg-white bg-opacity-10 border border-white border-opacity-20 text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 w-full"
-                aria-label="Email for newsletter"
-              />
-              <button 
-                type="submit" 
-                className="px-6 py-3 bg-white text-blue-800 rounded-md font-medium hover:bg-opacity-90 transition-colors flex items-center justify-center gap-2"
-              >
-                Subscribe
-                <ArrowRightIcon className="w-4 h-4" />
-              </button>
-            </form>
-          </div> */}
         </div>
 
         {/* Footer Bottom */}
