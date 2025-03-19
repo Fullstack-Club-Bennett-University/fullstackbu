@@ -24,7 +24,7 @@ const MarqueeWave = () => {
   }, []);
 
   // Create array with appropriate number of repeats
-  const marqueeItems = Array(repeats).fill("events");
+  const marqueeItems = Array(repeats).fill("EVENTS!");
 
   return (
     <div className="relative overflow-hidden w-full py-2">
@@ -45,7 +45,7 @@ const MarqueeWave = () => {
         {marqueeItems.map((item, index) => (
           <div key={`wave-1-${index}`} className="inline-flex items-center">
             <motion.span
-              className="text-[#0A84FF] font-medium text-2xl md:text-3xl mx-1"
+              className="text-[#0A84FF] bold-text text-lg md:text-xl mx-1"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
@@ -83,7 +83,7 @@ const MarqueeWave = () => {
         {marqueeItems.map((item, index) => (
           <div key={`wave-2-${index}`} className="inline-flex items-center">
             <motion.span
-              className="text-[#FF7800] font-medium text-2xl md:text-3xl mx-1"
+              className="text-[#FF7800] bold-text text-xl md:text-2xl mx-1"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

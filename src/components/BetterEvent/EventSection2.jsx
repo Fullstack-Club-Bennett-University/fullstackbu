@@ -307,7 +307,7 @@ export default function EventsCarousel() {
             <Star className="w-5 h-5 md:w-6 md:h-6 text-[#FF7800] fill-[#FF7800]" />
           </motion.div>
           <motion.h2
-            className="text-2xl md:text-4xl lg:text-5xl font-bold text-[#0A84FF] text-center"
+            className="text-3xl md:text-5xl lg:text-6xl font-bold text-[#000000] text-center"
             animate={{
               textShadow: [
                 "0 0 0px rgba(255, 120, 0, 0)",
@@ -317,11 +317,11 @@ export default function EventsCarousel() {
             }}
             transition={{ duration: 5, repeat: Infinity }}
             style={{
-              fontFamily: "'Montserrat', sans-serif",
+              fontFamily: "'Rufina', sans-serif",
               letterSpacing: "0.05em",
             }}
           >
-            SIGNATURE <span className="text-[#FF7800]">EVENTS</span>
+            EXPLORE OUR <span className="text-[#000000]">EVENTS</span>
           </motion.h2>
           <motion.div
             animate={{ rotate: -360 }}
@@ -334,7 +334,7 @@ export default function EventsCarousel() {
 
         <div className="flex justify-center">
           <motion.div
-            className="h-1 w-24 md:w-32 bg-gradient-to-r from-[#0A84FF] to-[#FF7800] rounded-full"
+            className="h-1 w-24 md:w-32 bg-gradient-to-r from-[#000000] to-[#000000] rounded-full"
             animate={{ width: ["24px", "100px", "24px"] }}
             transition={{
               duration: 8,
@@ -344,10 +344,10 @@ export default function EventsCarousel() {
           />
         </div>
         <p
-          className="text-base md:text-lg lg:text-xl text-[#0A84FF]/70 text-center mt-4 max-w-xs md:max-w-lg lg:max-w-2xl mx-auto px-4"
+          className="text-base md:text-lg lg:text-xl text-[#004386]/70 text-center mt-4 max-w-xs md:max-w-lg lg:max-w-2xl mx-auto px-4"
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
-          Experience our most prestigious gatherings and transformative programs
+          Experience our prestigious gatherings and transformative programs
         </p>
       </motion.div>
 
