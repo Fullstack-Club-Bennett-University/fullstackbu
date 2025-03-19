@@ -27,9 +27,6 @@ function App() {
         rel="stylesheet"
       />
 
-      <div className="min-h-screen w-full bg-white">
-        <EventsCarousel />
-      </div>
       <Router>
         <div className="App">
           {/* <Navbar /> */}
@@ -56,7 +53,7 @@ function App() {
                     {/* <section id="team">
                       <MeetTheTeamSectionCopy />
                     </section> */}
-                   
+
                     <section>
                       <AwardsComponent />
                     </section>
