@@ -103,6 +103,7 @@ const UpcomingEventsSection = () => {
   };
 
   return (
+    // <section className="relative bg-gradient-to-b from-white via-black to-white text-white pb-20">
     <section className="relative bg-gradient-to-b from-white to-blue-400 text-white pb-20">
       {/* Header Image */}
       <div className="w-full">
