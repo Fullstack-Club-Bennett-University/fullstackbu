@@ -8,34 +8,66 @@ import MarqueeWave from "./MarqueeWave";
 const events = [
   {
     image: "/events/event1.png",
-    title: "Fullstack Kickoff",
-    date: "September 15, 2024",
+    title: "Figmania",
+    date: "April 16, 2024",
     description:
-      "Starter event for Fullstack Club where we guide juniors through learning materials, strategic approaches, and achieving academic excellence while developing personality and attitude.",
+      "Figmania, hosted by the Full Stack Club, helped participants master Figma through hands-on learning. Despite minor delays, it boosted confidence and design skills.",
     leftCard: "/events/Subtract.png",
   },
   {
     image: "/events/event1.png",
-    title: "Code & Connect",
-    date: "October 22, 2024",
+    title: "Phantasia",
+    date: "March 23, 2024",
     description:
-      "An exclusive networking event bringing industry experts and aspiring developers together for collaboration and mentorship.",
+      "Phantasia united creatives in design and development challenges, fostering teamwork and innovation. Despite some struggles, it was a valuable learning experience.",
     leftCard: "/events/Subtract.png",
   },
   {
     image: "/events/event1.png",
-    title: "Tech Summit 2024",
-    date: "November 10, 2024",
+    title: "Design.io",
+    date: "April 17th, 2024",
     description:
-      "A premier technology conference featuring cutting-edge presentations, workshops, and opportunities to connect with tech innovators.",
+      "Design.io challenged participants to redesign Bennett University's site with a GTA theme, showcasing creativity and adaptability.",
     leftCard: "/events/Subtract.png",
   },
   {
     image: "/events/event1.png",
-    title: "Hackathon Elite",
-    date: "December 5, 2024",
+    title: "Hustle & Flow",
+    date: "April 17, 2024",
     description:
-      "Our flagship 48-hour hackathon challenging participants to build innovative solutions for real-world problems with mentorship from industry leaders.",
+      "Hustle & Flow, led by entrepreneur Shantanu, offered deep insights into startups and branding. Despite its intensity, the workshop was a hit with aspiring entrepreneurs.",
+    leftCard: "/events/Subtract.png",
+  },
+  {
+    image: "/events/event1.png",
+    title: "Clone.io",
+    date: "April 16, 2024",
+    description:
+      "Clone.io challenged participants to recreate a website in two hours, testing speed and precision. Despite hurdles, it showcased impressive technical and problem-solving skills.",
+    leftCard: "/events/Subtract.png",
+  },
+  {
+    image: "/events/event1.png",
+    title: "HTML & CSS Workshop",
+    date: "November 22-23, 2024",
+    description:
+      "The HTML & CSS Workshop by the Full Stack Club built a strong web development foundation. Despite initial challenges, structured guidance helped participants gain confidence.",
+    leftCard: "/events/Subtract.png",
+  },
+  {
+    image: "/events/event1.png",
+    title: "9.2 SGPA",
+    date: "September 10, 2024",
+    description:
+      "9.2 SGPA, led by Full Stack Club seniors, provided study strategies and resources for academic success. Despite the overwhelming material, it built a strong support network.",
+    leftCard: "/events/Subtract.png",
+  },
+  {
+    image: "/events/event1.png",
+    title: "Pirates of Fullstack",
+    date: "August 23, 2024",
+    description:
+      "At Club Carnival, Pirates of Fullstack, featured coding puzzles, design challenges, and a treasure hunt. Despite some tricky clues, the event was a thrilling success.",
     leftCard: "/events/Subtract.png",
   },
 ];
